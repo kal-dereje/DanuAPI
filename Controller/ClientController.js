@@ -3,16 +3,15 @@ const UserModel = require("../Model/User");
 
 const createClient = async (req, res) => {
   try {
-    const { sessionType, therapyHistory, genderPreference, age } = req.body;
+    const { sessionType, therapyHistory, genderPreference, userId } = req.body;
 
-    const user = await UserModel.findById("6568dc01342fb3ab9e959c91");
+    const user = await UserModel.findById(userId);
     console.log(user);
     if (user) {
       const clientModel = new ClientModel({
         sessionType,
         therapyHistory,
         genderPreference,
-        age,
         user: user,
       });
       clientModel.save();

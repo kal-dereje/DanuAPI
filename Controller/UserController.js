@@ -7,10 +7,28 @@ const createToken = (_id) => {
 
 //Sign Up
 const UserCreate = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    phoneNumber,
+    gender,
+    age,
+    role,
+  } = req.body;
 
   try {
-    const user = await User.SignUp(firstName, lastName, email, password);
+    const user = await User.SignUp(
+      firstName,
+      lastName,
+      email,
+      password,
+      phoneNumber,
+      gender,
+      age,
+      role
+    );
 
     res.status(200).json({ message: "Sucessfuly signed up!" });
   } catch (err) {
