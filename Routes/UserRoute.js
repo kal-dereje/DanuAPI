@@ -28,8 +28,8 @@ const userRouter = express.Router();
 
 userRouter.route("/GetUser").get(GetUser);
 //router.route("/UserCreate").post(upload, UserCreate);
-userRouter.route("/UserCreate").post(UserCreate);
-userRouter.route("/LoginUser").post(LoginUser);
+userRouter.route("/createUser").post(UserCreate);
+userRouter.route("/loginUser").post(LoginUser);
 // router.route("/:id").patch(upload, UpdateUser);
 userRouter.route("/:id").get(GetOneUser).delete(DeleteUser).patch(UpdateUser);
 

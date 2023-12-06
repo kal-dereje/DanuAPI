@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../Model/User");
-const Category = require("../Model/category");
 const Authentication = async (req, res, next) => {
   //verify
   const { authorization } = req.headers;
@@ -12,7 +11,7 @@ const Authentication = async (req, res, next) => {
     const { _id } = jwt.verify(token, process.env.SECRET);
     req.user = await User.findOne({ _id }).select("_id");
     const user_id = req.user._id;
-    req.cat = await Category.find({ user_id }).select("_id");
+    //req.cat = await Category.find({ user_id }).select("_id");
 
     next();
   } catch (err) {
