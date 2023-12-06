@@ -20,21 +20,27 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    // phone_number: {
-    //   type: String,
-    // },
-    // profile_pic: {
-    //   type: String,
-    // },
-    // gender: {
-    //   type: String,
-    // },
-    // age: {
-    //   type: Number,
-    // },
+    phoneNumber: {
+      type: String,
+    },
+    profilePic: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+    age: {
+      type: Number,
+    },
     isActive: {
       type: Boolean,
       default: false,
+    },
+
+    role: {
+      type: String,
+      enum: ["client", "therapist", "admin"],
+      required: true,
     },
   },
   { timestamps: true }
@@ -45,9 +51,22 @@ userSchema.statics.SignUp = async function (
   firstName,
   lastName,
   email,
-  password
+  password,
+  phoneNumber,
+  gender,
+  age,
+  role
 ) {
-  if (!email || !password || !firstName || !lastName) {
+  if (
+    !email ||
+    !password ||
+    !firstName ||
+    !lastName ||
+    !phoneNumber ||
+    !gender ||
+    !age ||
+    !role
+  ) {
     throw Error("All inputs are required");
   }
   if (!validator.isEmail(email)) {
@@ -68,12 +87,15 @@ userSchema.statics.SignUp = async function (
     lastName,
     email,
     password: hashedPassword,
+    phoneNumber,
+    gender,
+    age,
+    role,
   });
   return users;
 };
 
 //Static LOgin Method
-
 userSchema.statics.Login = async function (email, password) {
   if (!email || !password) {
     throw Error("All input is required!");
