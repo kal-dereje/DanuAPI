@@ -25,22 +25,25 @@ const createChat = async (req, res) => {
 };
 
 const getChat = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const chats = await ChatModel.find({
+      $or: [{ sender: userId }, { receiver: userId }],
+    });
+
+    res.status(200).json(chats);
+  } catch (err) {
+    console.error(err);
+  }
+};
+const getOneChat = async (req, res) => {
   // try {
-  //   const chat = await ChatModel.findById("656b636211efd7ae73426237").populate(
-  //     "user"
-  //   );
-  //   if (therapist && therapist.user) {
-  //     const user = therapist.user;
-  //     // Access the user model
-  //     console.log(user);
-  //   } else {
-  //     console.log("therapist or associated user not found");
-  //   }
+  //   const {chatId} = req.params;
   // } catch (err) {
   //   console.error(err);
   // }
 };
-const getOneChat = async (req, res) => {};
 const updateChat = async (req, res) => {};
 const deleteChat = async (req, res) => {};
 
