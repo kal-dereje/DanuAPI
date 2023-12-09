@@ -26,11 +26,15 @@ const userRouter = express.Router();
 //   storage: Storage,
 // }).single("testImage");
 
-userRouter.route("/GetUser").get(GetUser);
+userRouter.route("/getUser").get(GetUser);
 //router.route("/UserCreate").post(upload, UserCreate);
 userRouter.route("/createUser").post(UserCreate);
 userRouter.route("/loginUser").post(LoginUser);
 // router.route("/:id").patch(upload, UpdateUser);
-userRouter.route("/:id").get(GetOneUser).delete(DeleteUser).patch(UpdateUser);
+userRouter
+  .route("/:userId")
+  .get(GetOneUser)
+  .delete(DeleteUser)
+  .patch(UpdateUser);
 
 module.exports = userRouter;

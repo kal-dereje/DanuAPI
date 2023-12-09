@@ -30,14 +30,13 @@ const UserCreate = async (req, res) => {
       role
     );
 
-    res.status(200).json({ message: "Sucessfuly signed up!" });
+    res.status(201).json({ message: "Sucessfuly signed up!", user });
   } catch (err) {
     res.status(422).json({ message: err.message });
   }
 };
 
 //Login
-
 const LoginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -52,41 +51,68 @@ const LoginUser = async (req, res) => {
   }
 };
 
-//Get all(if Super Admin is Available for the future)
-
+//Get all
 const GetUser = async (req, res) => {
-  const cv = await User.find({});
-  res.status(200).json(cv.image);
-};
-// Get one(if Super Admin is Available for the future)
-const GetOneUser = async (req, res) => {
-  res.status(200).json({ message: "this is one get" });
-};
-//Update(For password, username and avatar change for the future)
-const UpdateUser = async (req, res) => {
-  const { username, email, password } = req.body;
-
-  const image = req.file.filename;
-  const { id } = req.params;
-
-  const result = await User.findById(id);
-  if (!result) {
-    return res.status(400).json({ msg: "no id found" });
+  try {
+    const users = await User.find({});
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(401).json({ message: err.message });
   }
-  const updated = await User.findByIdAndUpdate(
-    { _id: id },
-    { username, email, password, image }
-  );
+};
+// Get one
+const GetOneUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
 
-  const updated_2 = await User.findById(id);
+    const user = await User.findById(userId);
 
-  res.status(200).json(updated_2);
+    if (user) {
+      res.status(200).json({ message: "User found", user: user });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (err) {
+    res.status(422).json({ message: err.message });
+  }
+};
+
+const UpdateUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const updatedData = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {
+      new: true,
+    });
+
+    if (updatedUser) {
+      res.status(200).json(updatedUser);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (err) {
+    res.status(422).json({ message: err.message });
+  }
   // res.status(200).json({ message: "this is update" });
 };
-//Delete
 
+//Delete one
 const DeleteUser = async (req, res) => {
-  res.status(200).json({ message: "this is delete" });
+  try {
+    const { userId } = req.params;
+
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user", error);
+    res.status(500).json({ error: "Failed to delete user" });
+  }
 };
 
 module.exports = {

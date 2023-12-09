@@ -10,6 +10,8 @@ const userRoute = require("./Routes/UserRoute");
 const clientRoute = require("./Routes/ClientRoute");
 const therapistRoute = require("./Routes/TherapistRoute");
 const chatRoute = require("./Routes/ChatRoute");
+const tetsimonyRoute = require("./Routes/TestimonyRoute");
+const reviewRoute = require("./Routes/ReviewRoute");
 const bodyParser = require("body-parser");
 
 // Connect to the database
@@ -30,6 +32,8 @@ app.use("/api/user", userRoute); // User-related routes
 app.use("/api/client", clientRoute); // Client-related routes
 app.use("/api/therapist", therapistRoute); // Therapist-related routes
 app.use("/api/chat", chatRoute); // chat-related routes
+app.use("/api/testimony", tetsimonyRoute); // testimony-related routes
+app.use("/api/review", reviewRoute); // review-related routes
 
 // Start the server and listen on the specified port
 const server = app.listen(port, () => {
