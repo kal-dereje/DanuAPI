@@ -1,21 +1,17 @@
 const multer = require("multer");
+
 const Storage = multer.diskStorage({
-  destination: "uploads",
+  destination: (req, file, cb) => {
+    cb(null, "profilePic");
+  },
   filename: (req, file, cb) => {
+    console.log(file);
     cb(null, file.originalname);
   },
 });
-const upload = multer({
+
+const profilePicUploder = multer({
   storage: Storage,
-}).single("testImage");
+}).single("profilePicture");
 
-const FileUploder = async (err, req, res, next) => {
-  upload(req, res, (err) => {
-    if (err) {
-      console.log(err);
-      throw new Error("can not upload");
-    }
-  });
-};
-
-module.exports = FileUploder;
+module.exports = { profilePicUploder };
