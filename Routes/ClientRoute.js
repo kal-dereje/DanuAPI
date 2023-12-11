@@ -1,6 +1,6 @@
 const {
   createClient,
-  getClient,
+  getClients,
   getOneClient,
   deleteClient,
   updateClient,
@@ -12,9 +12,9 @@ const clientRouter = express.Router();
 
 // clientRouter.use(authentication);
 clientRouter.route("/createClient").post(createClient);
-clientRouter.route("/getClients").get(getClient);
-clientRouter.route("/getOneClient/:id").get(getOneClient);
-clientRouter.route("/updateClient/:id").patch(updateClient);
-clientRouter.route("/deleteClient/:id").delete(deleteClient);
+clientRouter.route("/getClients").get(getClients);
+clientRouter.route("/getOneClient/:clientId").get(getOneClient);
+clientRouter.route("/updateClient/:clientId").patch(updateClient);
+clientRouter.route("/deleteClient/:clientId").delete(deleteClient);
 
 module.exports = clientRouter;
