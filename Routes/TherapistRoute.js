@@ -13,8 +13,8 @@ const therapistRouter = express.Router();
 // clientRouter.use(authentication);
 therapistRouter.route("/createTherapist").post(createTherapist);
 therapistRouter.route("/getTherapists").get(getTherapist);
-therapistRouter.route("/getOneTherapist/:id").get(getOneTherapist);
-therapistRouter.route("/updateTherapist/:id").patch(updateTherapist);
-therapistRouter.route("/deleteTherapist/:id").delete(deleteTherapist);
+therapistRouter.route("/getOneTherapist/:therapistId").get(getOneTherapist);
+therapistRouter.route("/updateTherapist/:therapistId").patch(updateTherapist);
+therapistRouter.route("/deleteTherapist/:therapistId").delete(deleteTherapist);
 
 module.exports = therapistRouter;
