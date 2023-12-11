@@ -2,6 +2,7 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const socketIo = require("socket.io");
+const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
@@ -48,25 +49,45 @@ const io = new socketIo.Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  socket.on("setup", (userData) => {
-    socket.join(userData.id);
-    socket.emit("connected", userData.id);
-  });
-  socket.on("join room", (room) => {
-    socket.join(room);
-  });
-  socket.on("typing", (room) => socket.in(room).emit("typing"));
-  socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+// io.on("connection", (socket) => {
+//   socket.on("setup", (userData) => {
+//     socket.join(userData.id);
+//     socket.emit("connected", userData.id);
+//   });
+//   socket.on("join room", (id) => {
+//     console.log(id);
+//     socket.emit("joined room", uuidV4);
+//   });
+//   socket.on("typing", (room) => socket.in(room).emit("typing"));
+//   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
-  socket.on("new message", (newMessageRecieve) => {
-    var chat = newMessageRecieve.chatId;
-    console.log(newMessageRecieve);
-    socket.emit("test", "testing emit");
-    if (!chat.users) console.log("chats.users is not defined");
-    chat.users.forEach((user) => {
-      if (user._id == newMessageRecieve.sender._id) return;
-      socket.in(user._id).emit("message recieved", newMessageRecieve);
-    });
+//   socket.on("new message", (newMessageRecieve) => {
+//     var chat = newMessageRecieve.chatId;
+//     console.log(newMessageRecieve);
+//     socket.emit("test", "testing emit");
+//     if (!chat.users) console.log("chats.users is not defined");
+//     chat.users.forEach((user) => {
+//       if (user._id == newMessageRecieve.sender._id) return;
+//       socket.in(user._id).emit("message recieved", newMessageRecieve);
+//     });
+//   });
+// });
+
+io.on("connection", (socket) => {
+  socket.emit("me", socket.id);
+
+  socket.on("disconnect"),
+    () => {
+      socket.broadcast.emit("callended");
+    };
+
+  socket.on("calluser", ({ userToCallId, signalData, from, name }) => {
+    io.to("userToCall").emit("calluser", { signal: signalData, from, name });
+  });
+
+  socket.on("answercall", (data) => {
+    io.to(data.to).emit("callaccepted", data.signal);
   });
 });
+
+
