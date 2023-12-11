@@ -22,26 +22,21 @@ const createReview = async (req, res) => {
       res.status(200).json(reviewModel);
     }
   } catch (error) {
-    console.error("Error creating review", error);
-    res.status(500).json({ error: "Failed to create review" });
+    res.status(404).json({ error: "Failed to create review" });
   }
 };
 
 const getReview = async (req, res) => {
-  // try {
-  //   const chat = await ChatModel.findById("656b636211efd7ae73426237").populate(
-  //     "user"
-  //   );
-  //   if (therapist && therapist.user) {
-  //     const user = therapist.user;
-  //     // Access the user model
-  //     console.log(user);
-  //   } else {
-  //     console.log("therapist or associated user not found");
-  //   }
-  // } catch (err) {
-  //   console.error(err);
-  // }
+  try {
+    const reviews = await ReviewModel.find({});
+    if (reviews) {
+      res.status(200).json(reviews);
+    } else {
+      res.status(200).json("There is no Review");
+    }
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 };
 const getOneReview = async (req, res) => {};
 const updateReview = async (req, res) => {};

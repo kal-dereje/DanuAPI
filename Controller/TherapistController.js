@@ -1,16 +1,16 @@
 const TherapistModel = require("../Model/Therapist");
 const UserModel = require("../Model/User");
 
+// CREATE NEW THERAPIST
 const createTherapist = async (req, res) => {
   try {
-    const { certification, isQualifed, description, userId } = req.body;
+    const { certification, description, userId } = req.body;
 
     const user = await UserModel.findById(userId);
     console.log(user);
     if (user) {
       const therapistModel = new TherapistModel({
         certification,
-        isQualifed,
         description,
         user: user,
       });
@@ -24,25 +24,76 @@ const createTherapist = async (req, res) => {
   }
 };
 
+//GET ALL THERAPIST
 const getTherapist = async (req, res) => {
   try {
-    const therapist = await TherapistModel.findById(
-      "656b636211efd7ae73426237"
-    ).populate("user");
-    if (therapist && therapist.user) {
-      const user = therapist.user;
-      // Access the user model
-      console.log(user);
+    const therapists = await TherapistModel.find({}).populate("user");
+
+    if (therapists) {
+      res.status(200).json({ therapists });
     } else {
-      console.log("therapist or associated user not found");
+      res
+        .status(200)
+        .json({ message: "therapist or associated user not found" });
     }
   } catch (err) {
-    console.error(err);
+    res.status(404).json({ messasge: err.message });
   }
 };
-const getOneTherapist = async (req, res) => {};
-const updateTherapist = async (req, res) => {};
-const deleteTherapist = async (req, res) => {};
+const getOneTherapist = async (req, res) => {
+  try {
+    const { therapistId } = req.params;
+    const therapist = await TherapistModel.findById(therapistId).populate(
+      "user"
+    );
+    if (therapist) {
+      res.status(200).json({ therapist });
+    } else {
+      res.status(404).json({ messasge: "therapist not found" });
+    }
+  } catch (err) {
+    res.status(422).json({ messasge: err.message });
+  }
+};
+const updateTherapist = async (req, res) => {
+  try {
+    const updatedData = req.body;
+    const { therapistId } = req.params;
+
+    const updatedTherapist = await TherapistModel.findByIdAndUpdate(
+      therapistId,
+      updatedData,
+      {
+        new: true,
+      }
+    );
+    if (updatedTherapist) {
+      res.status(200).json(updatedTherapist);
+    } else {
+      res.status(404).json({ message: "Therapist not found" });
+    }
+  } catch (err) {
+    res.status(422).json({ messasge: err.message });
+  }
+};
+
+//NOT FINISHED~~~~
+const deleteTherapist = async (req, res) => {
+  try {
+    const { therapistId } = req.params;
+
+    const deletedTherapist = await TherapistModel.findByIdAndDelete(
+      therapistId
+    );
+    if (deletedTherapist) {
+      res.status(200).json({ message: "succesfully deleted", user });
+    } else {
+      res.status(404).json({ message: "Therapist not found" });
+    }
+  } catch (err) {
+    res.status(422).json({ messasge: err.message });
+  }
+};
 
 module.exports = {
   createTherapist,

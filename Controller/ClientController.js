@@ -24,29 +24,77 @@ const createClient = async (req, res) => {
   }
 };
 
-const getClient = async (req, res) => {
+//GET ALL CLIENTS
+const getClients = async (req, res) => {
   try {
-    const client = await ClientModel.findById(
-      "656b636211efd7ae73426237"
-    ).populate("user");
-    if (client && client.user) {
-      const user = client.user;
-      // Access the user model
-      console.log(user);
+    const client = await ClientModel.find({}).populate("user");
+    if (client) {
+      res.status(200).json(client);
     } else {
-      console.log("Client or associated user not found");
+      res.status(200).json({ message: "There is no client found" });
     }
   } catch (err) {
-    console.error(err);
+    res.status(404).json({ message: err.message });
   }
 };
-const getOneClient = async (req, res) => {};
-const updateClient = async (req, res) => {};
-const deleteClient = async (req, res) => {};
+
+const getOneClient = async (req, res) => {
+  try {
+    const { clientId } = req.params;
+
+    const client = await ClientModel.findById(clientId).populate("user");
+    if (client) {
+      res.status(200).json(client);
+    } else {
+      res.status(200).json({ message: "Client or associated user not found" });
+    }
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+const updateClient = async (req, res) => {
+  try {
+    const { clientId } = req.params;
+    const updatedData = req.body;
+    const updatedClient = await ClientModel.findByIdAndUpdate(
+      clientId,
+      updatedData,
+      {
+        new: true,
+      }
+    );
+
+    if (updatedClient) {
+      res.status(200).json(updatedClient);
+    } else {
+      res.status(200).json({ message: "Client or associated user not found" });
+    }
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+//NOT FINISHED~~~~~~
+const deleteClient = async (req, res) => {
+  try {
+    const { clientId } = req.params;
+
+    const deleteClient = await ClientModel.findByIdAndDelete(clientId);
+
+    if (deleteClient) {
+      res.status(200).json({ messsage: "Client deleted successfully" });
+    } else {
+      res.status(200).json({ message: "Client or associated user not found" });
+    }
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
 
 module.exports = {
   createClient,
-  getClient,
+  getClients,
   getOneClient,
   updateClient,
   deleteClient,

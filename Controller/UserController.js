@@ -19,12 +19,15 @@ const UserCreate = async (req, res) => {
   } = req.body;
 
   try {
+    const profilePic = req.file.filename;
+    console.log("file name: ", profilePic);
     const user = await User.SignUp(
       firstName,
       lastName,
       email,
       password,
       phoneNumber,
+      profilePic,
       gender,
       age,
       role
