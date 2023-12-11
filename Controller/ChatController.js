@@ -37,13 +37,9 @@ const getChat = async (req, res) => {
     console.error(err);
   }
 };
-const getOneChat = async (req, res) => {
-  // try {
-  //   const {chatId} = req.params;
-  // } catch (err) {
-  //   console.error(err);
-  // }
-};
+
+//Will add if there is a feature for chats to be updated and deleted
+const getOneChat = async (req, res) => {};
 const updateChat = async (req, res) => {};
 const deleteChat = async (req, res) => {};
 

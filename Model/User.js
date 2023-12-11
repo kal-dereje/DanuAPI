@@ -53,6 +53,7 @@ userSchema.statics.SignUp = async function (
   email,
   password,
   phoneNumber,
+  profilePic,
   gender,
   age,
   role
@@ -63,6 +64,7 @@ userSchema.statics.SignUp = async function (
     !firstName ||
     !lastName ||
     !phoneNumber ||
+    !profilePic ||
     !gender ||
     !age ||
     !role
@@ -88,6 +90,7 @@ userSchema.statics.SignUp = async function (
     email,
     password: hashedPassword,
     phoneNumber,
+    profilePic,
     gender,
     age,
     role,
