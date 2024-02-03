@@ -10,7 +10,7 @@ const therapistSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    Description: {
+    description: {
       type: String,
       requried: true,
     },

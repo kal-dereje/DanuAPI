@@ -12,16 +12,19 @@ const clientRoute = require("./Routes/ClientRoute");
 const therapistRoute = require("./Routes/TherapistRoute");
 const chatRoute = require("./Routes/ChatRoute");
 const tetsimonyRoute = require("./Routes/TestimonyRoute");
+const paymentRoute = require("./Routes/paymentRoute");
 const reviewRoute = require("./Routes/ReviewRoute");
+const medicalDiagnosisRoute = require("./Routes/DiagnosisRoute");
 const bodyParser = require("body-parser");
 
 // Connect to the database
 Dbconnect();
 
+const uri = "http://localhost:5001";
 // Middleware setup
 app.use(express.json()); // Parse JSON requests
 const corsConfig = {
-  origin: "*", // Set the allowed origin for CORS (in this case, any origin is allowed)
+  origin: uri, // Set the allowed origin for CORS (in this case, any origin is allowed)
   credentials: true,
 };
 app.use(bodyParser.json()); // Parse JSON requests using body-parser
@@ -35,6 +38,8 @@ app.use("/api/therapist", therapistRoute); // Therapist-related routes
 app.use("/api/chat", chatRoute); // chat-related routes
 app.use("/api/testimony", tetsimonyRoute); // testimony-related routes
 app.use("/api/review", reviewRoute); // review-related routes
+app.use("/api/payment", paymentRoute); // review-related routes
+app.use("/api/medicalDiagnosis", medicalDiagnosisRoute);
 
 // Start the server and listen on the specified port
 const server = app.listen(port, () => {
@@ -89,5 +94,3 @@ io.on("connection", (socket) => {
     io.to(data.to).emit("callaccepted", data.signal);
   });
 });
-
-
