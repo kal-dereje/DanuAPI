@@ -52,35 +52,21 @@ userSchema.statics.SignUp = async function (
   lastName,
   email,
   password,
-  phoneNumber,
-  profilePic,
-  gender,
-  age,
   role
 ) {
-  if (
-    !email ||
-    !password ||
-    !firstName ||
-    !lastName ||
-    !phoneNumber ||
-    !profilePic ||
-    !gender ||
-    !age ||
-    !role
-  ) {
+  if (!email || !password || !firstName || !lastName || !role) {
     throw Error("All inputs are required");
   }
-  if (!validator.isEmail(email)) {
-    throw Error("Email is not valid");
-  }
-  if (!validator.isStrongPassword(password)) {
-    throw Error("Password is not strong enough");
-  }
-  const exists = await this.findOne({ email });
-  if (exists) {
-    throw Error("Email already in use!");
-  }
+  // if (!validator.isEmail(email)) {
+  //   throw Error("Email is not valid");
+  // }
+  // if (!validator.isStrongPassword(password)) {
+  //   throw Error("Password is not strong enough");
+  // }
+  // const exists = await this.findOne({ email });
+  // if (exists) {
+  //   throw Error("Email already in use!");
+  // }
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -89,12 +75,9 @@ userSchema.statics.SignUp = async function (
     lastName,
     email,
     password: hashedPassword,
-    phoneNumber,
-    profilePic,
-    gender,
-    age,
     role,
   });
+  console.log("after");
   return users;
 };
 
