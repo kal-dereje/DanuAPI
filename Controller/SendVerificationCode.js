@@ -1,6 +1,6 @@
 // Import the necessary module for sending emails
 const sendEmail = require("../utils/sendEmail");
-const VerficationerificationCodeModel = require("../Model/VerificationCode");
+const VerififcationCodeModel = require("../Model/VerificationCode");
 // Controller function for handling contact form submissions
 const SendEmailVerificationCodeController = async (req, res) => {
   try {
@@ -18,12 +18,28 @@ const SendEmailVerificationCodeController = async (req, res) => {
     const clientMessage = `
                      <h2>Your Verification Code is: ${randomFiveDigitNumber}</h2>
     `;
+    // Define the condition to find the document
+    const condition = { email };
+    // Set the option `upsert` to true
+    const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    // Define the update or set of fields for the document
+    const updateFields = { email, verificationCode: randomFiveDigitNumber };
+
     if (email) {
-      const verificationCodeModel = new VerficationerificationCodeModel({
-        email,
-        verificationCode: randomFiveDigitNumber,
-      });
-      verificationCodeModel.save();
+      const verificationCodeModel = VerififcationCodeModel.findOneAndUpdate(
+        condition,
+        updateFields,
+        options
+      )
+        .then((updatedOrNewVerificationCode) => {
+          console.log(
+            "Verification code updated or created:",
+            updatedOrNewVerificationCode
+          );
+        })
+        .catch((error) => {
+          console.error("Error updating or creating verification code:", error);
+        });
     }
     // Send the email with the client's contact form data
     await sendEmail(subject, clientMessage, send_to, sent_from, reply_to);
