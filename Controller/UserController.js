@@ -1,5 +1,7 @@
 const User = require("../Model/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 //Token Generator
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
@@ -7,42 +9,49 @@ const createToken = (_id) => {
 
 //Sign Up
 const UserCreate = async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    age,
-    role,
-  } = req.body;
-
+  const { firstName, lastName, email, password, role } = req.body;
   try {
-    const profilePic = req.file.filename;
-    console.log("file name: ", profilePic);
-    const user = await User.SignUp(
-      firstName,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-      profilePic,
-      gender,
-      age,
-      role
-    );
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    //const profilePic = req.file.filename;
+    const exists = await User.findOne({ email });
+    if (exists) {
+      res.status(409).json({ message: "Email already in use!" });
 
-    res.status(201).json({ message: "Sucessfuly signed up!", user });
+      // throw Error("Email already in use!");
+    } else {
+      const user = new User({
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        role,
+      });
+      user.save();
+
+      // const user = await User.SignUp(
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   password,
+      //   // phoneNumber,
+      //   // profilePic,
+      //   // gender,
+      //   // age,
+      //   role
+      // );
+
+      res.status(201).json({ message: "Sucessfuly signed up!", user });
+    }
   } catch (err) {
-    res.status(422).json({ message: err.message });
+    res.status(422).json({ message: err });
   }
 };
 
 //Login
 const LoginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(req.body);
   try {
     const users = await User.Login(email, password);
 

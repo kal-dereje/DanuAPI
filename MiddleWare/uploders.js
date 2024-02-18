@@ -2,16 +2,18 @@ const multer = require("multer");
 
 const Storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "profilePic");
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
-    console.log(file);
     cb(null, file.originalname);
   },
 });
 
-const profilePicUploder = multer({
+const uploader = multer({
   storage: Storage,
-}).single("profilePicture");
+}).fields([
+  { name: "profilePic", maxCount: 1 },
+  { name: "cv", maxCount: 1 }, // Adjust maxCount based on your needs
+]);
 
-module.exports = { profilePicUploder };
+module.exports = { uploader };

@@ -6,10 +6,16 @@ const therapistSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isQualifed: {
-      type: Boolean,
-      default: false,
+    proffesion: {
+      type: String,
+      required: true,
     },
+    availabeDate: [
+      {
+        type: Date,
+        default: Date.now,
+      },
+    ],
     description: {
       type: String,
       requried: true,
