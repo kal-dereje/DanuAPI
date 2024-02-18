@@ -18,6 +18,7 @@ const medicalDiagnosisRoute = require("./Routes/DiagnosisRoute");
 const bodyParser = require("body-parser");
 const sendEmail = require("./Routes/SendEmailRoute");
 const verificationCodeRoute = require("./Routes/VerificationRoute");
+const questionnaireRoute = require("./Routes/QuestionnaireRoute");
 // Connect to the database
 Dbconnect();
 
@@ -44,6 +45,7 @@ app.use("/api/medicalDiagnosis", medicalDiagnosisRoute);
 // Define the route for handling contact form submissions
 app.use("/api/sendEmail", sendEmail);
 app.use("/api/verification", verificationCodeRoute);
+app.use("/api/questionnaire", questionnaireRoute);
 
 // Start the server and listen on the specified port
 const server = app.listen(port, () => {
@@ -51,10 +53,9 @@ const server = app.listen(port, () => {
 });
 
 const io = new socketIo.Server(server, {
-  pingTimeout: 60000,
   cors: {
     origin: "*",
-    credentials: true,
+    methods: ["GET", "POST"],
   },
 });
 
@@ -85,16 +86,19 @@ const io = new socketIo.Server(server, {
 io.on("connection", (socket) => {
   socket.emit("me", socket.id);
 
-  socket.on("disconnect"),
-    () => {
-      socket.broadcast.emit("callended");
-    };
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("callEnded");
+  });
 
-  socket.on("calluser", ({ userToCallId, signalData, from, name }) => {
-    io.to("userToCall").emit("calluser", { signal: signalData, from, name });
+  socket.on("callUser", (data) => {
+    io.to("userToCall").emit("callUser", {
+      signal: data.signalData,
+      from: data.from,
+      name: data.name,
+    });
   });
 
   socket.on("answercall", (data) => {
-    io.to(data.to).emit("callaccepted", data.signal);
+    io.to(data.to).emit("callAccepted", data.signal);
   });
 });
