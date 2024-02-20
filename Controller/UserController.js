@@ -50,6 +50,7 @@ const UserCreate = async (req, res) => {
 
 //Login
 const LoginUser = async (req, res) => {
+  console.log("kaag");
   const { email, password } = req.body;
   console.log(req.body);
   try {

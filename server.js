@@ -1,11 +1,14 @@
 // Import required Node.js modules and third-party packages
 const express = require("express");
 const dotenv = require("dotenv").config();
+const https = require("https");
+const fs = require("fs");
+const path = require("path");
 const socketIo = require("socket.io");
 const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8005;
 const Dbconnect = require("./config/DbConnection");
 const userRoute = require("./Routes/UserRoute");
 const clientRoute = require("./Routes/ClientRoute");
@@ -22,7 +25,14 @@ const questionnaireRoute = require("./Routes/QuestionnaireRoute");
 // Connect to the database
 Dbconnect();
 
-const uri = "http://localhostS:5173";
+// Set up SSL options (provide your SSL certificate and key file paths)
+
+const sslOptions = {
+  key: fs.readFileSync(path.join(__dirname, "cert", "key.pem")),
+  cert: fs.readFileSync(path.join(__dirname, "cert", "cert.pem")),
+};
+
+// const uri = "http://localhostS:5173";
 // Middleware setup
 app.use(express.json()); // Parse JSON requests
 const corsConfig = {
@@ -47,6 +57,27 @@ app.use("/api/sendEmail", sendEmail);
 app.use("/api/verification", verificationCodeRoute);
 app.use("/api/questionnaire", questionnaireRoute);
 
+const agent = new https.Agent({
+  keepAlive: true,
+  maxSockets: 100,
+  // Other options as needed
+});
+
+// Create an HTTPS server
+// const server = https.createServer(
+//   {
+//     ...sslOptions,
+//     agent: agent,
+//   },
+//   app
+// );
+
+// // Start the server and listen on the specified port
+// server.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
+
+///////
 // Start the server and listen on the specified port
 const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

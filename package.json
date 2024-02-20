@@ -16,6 +16,9 @@
     "request": "^2.88.2",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "csv-parser": "^3.0.0",
+    "pandas-js": "^0.2.4",
+    "random-forest": "^0.0.7"
   }
 }
