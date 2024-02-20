@@ -122,14 +122,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("callUser", (data) => {
-    io.to("userToCall").emit("callUser", {
+    io.to(data.userToCall).emit("callUser", {
       signal: data.signalData,
       from: data.from,
       name: data.name,
     });
   });
 
-  socket.on("answercall", (data) => {
+  socket.on("answerCall", (data) => {
     io.to(data.to).emit("callAccepted", data.signal);
   });
 });
