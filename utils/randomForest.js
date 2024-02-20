@@ -2,9 +2,9 @@ const RandomForest = require("random-forest").RandomForest;
 const csv = require("csv-parser");
 const fs = require("fs");
 
-function randomForestClassifer(data) {
+function randomForestClassifer(userData) {
   // Define the path to your CSV file
-  const csvFilePath = "../test_dataset.csv";
+  const csvFilePath = "./test_dataset.csv";
 
   // Define the column names
   const features = [
@@ -51,7 +51,7 @@ function randomForestClassifer(data) {
       rf.train(X, y, { numTrees: 10 });
 
       // Make predictions on new data
-      const prediction = rf.predict([data]);
+      const prediction = rf.predict([userData]);
       console.log("Prediction:", prediction);
     });
 }
