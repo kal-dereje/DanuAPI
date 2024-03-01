@@ -1,101 +1,101 @@
-gender,age,relationship_status,been_in_therapy,current_eating_habits,overwhelming_sadness_grief_depression,little_interest_pleasure,feeling_down_depressed_hopeless,poor_appetite_or_overeating,thought_of_dying,currently_employed,drinks_alcohol,thought_about_suicide,currently_experiencing_anxiety_panic_attack_or_phobias,takes_any_medication,any_chronic_pain,sleeping_habits,class_label
-woman,18-25,in a relationship,no,fair,yes,nearly every day,several days,more than half the days,not at all,no,monthly,in the last 2 weeks,yes,no,no,good,cognitive disorder
-woman,18-25,married,no,poor,no,not at all,nearly every day,more than half the days,not at all,no,monthly,over 3 months ago,yes,yes,yes,good,development disorder
-woman,36-45,married,no,good,no,several days,several days,not at all,more than half the days,no,infrequently,over a year ago,yes,yes,no,good,substance related
-woman,>70,in a relationship,yes,fair,no,not at all,not at all,nearly every day,not at all,yes,weekly,over a month ago,yes,no,yes,fair,psychosis
-woman,18-25,divorced,yes,fair,no,more than half the days,more than half the days,nearly every day,not at all,no,weekly,over 3 months ago,no,yes,no,poor,eating disorder
-woman,26-35,other,yes,good,no,not at all,nearly every day,not at all,more than half the days,yes,monthly,never,yes,yes,yes,poor,psychosis
-woman,26-35,other,yes,fair,yes,not at all,nearly every day,nearly every day,several days,yes,never,over a year ago,no,no,no,poor,substance related
-woman,26-35,single,yes,good,yes,more than half the days,several days,more than half the days,more than half the days,yes,never,over 2 weeks ago,no,no,yes,fair,development disorder
-woman,36-45,divorced,no,fair,no,several days,several days,more than half the days,more than half the days,yes,monthly,over a year ago,no,yes,yes,fair,mood disorder
-man,>70,other,no,good,no,not at all,not at all,more than half the days,several days,yes,monthly,over 3 months ago,no,yes,no,fair,substance related
-man,18-25,married,yes,fair,no,several days,several days,more than half the days,several days,yes,never,never,no,yes,yes,poor,development disorder
-man,18-25,widowed,no,fair,yes,nearly every day,several days,not at all,nearly every day,yes,daily,over a year ago,yes,no,yes,poor,substance related
-man,26-35,other,yes,fair,yes,not at all,more than half the days,not at all,more than half the days,yes,weekly,over 2 weeks ago,no,yes,yes,poor,psychosis
-man,18-25,widowed,no,poor,no,several days,several days,nearly every day,more than half the days,no,weekly,never,yes,yes,yes,fair,schizophrenia
-man,>70,other,no,good,no,several days,not at all,several days,nearly every day,yes,infrequently,over a year ago,yes,no,no,fair,psychosis
-man,18-25,married,yes,poor,yes,nearly every day,several days,more than half the days,nearly every day,yes,monthly,in the last 2 weeks,no,no,yes,good,cognitive disorder
-woman,>70,in a relationship,no,good,no,several days,several days,more than half the days,not at all,no,never,over a month ago,yes,yes,no,fair,psychosis
-woman,36-45,married,no,good,no,more than half the days,several days,nearly every day,more than half the days,yes,infrequently,over 2 weeks ago,yes,no,yes,poor,anxiety disorder
-man,>70,in a relationship,yes,good,no,not at all,not at all,more than half the days,several days,yes,never,never,yes,yes,yes,good,eating disorder
-man,18-25,other,yes,good,yes,more than half the days,nearly every day,several days,not at all,no,infrequently,over 3 months ago,yes,no,yes,fair,personality disorder
-man,26-35,other,no,good,no,not at all,not at all,nearly every day,more than half the days,no,infrequently,over 2 weeks ago,no,yes,yes,good,development disorder
-woman,>70,single,yes,fair,yes,nearly every day,several days,not at all,several days,no,weekly,over a year ago,no,no,no,fair,schizophrenia
-man,18-25,in a relationship,no,good,yes,not at all,not at all,more than half the days,more than half the days,yes,daily,in the last 2 weeks,yes,yes,no,poor,psychosis
-woman,36-45,single,no,good,no,not at all,not at all,several days,several days,yes,infrequently,over a year ago,no,no,yes,fair,substance related
-woman,18-25,single,no,poor,yes,several days,nearly every day,several days,several days,no,never,never,yes,yes,no,fair,cognitive disorder
-woman,26-35,in a relationship,no,good,no,more than half the days,several days,several days,not at all,no,never,in the last 2 weeks,no,no,yes,poor,personality disorder
-man,26-35,in a relationship,no,poor,no,several days,nearly every day,more than half the days,not at all,no,never,over a month ago,yes,yes,yes,good,psychosis
-man,36-45,single,no,good,yes,several days,not at all,more than half the days,several days,no,monthly,over a year ago,yes,no,no,fair,cognitive disorder
-woman,26-35,widowed,yes,fair,no,more than half the days,several days,nearly every day,not at all,yes,infrequently,over a month ago,no,yes,no,good,substance related
-woman,36-45,other,yes,fair,no,nearly every day,more than half the days,nearly every day,more than half the days,yes,monthly,over a month ago,no,no,no,poor,eating disorder
-woman,26-35,widowed,yes,poor,yes,nearly every day,several days,several days,nearly every day,yes,infrequently,over a year ago,no,no,no,good,development disorder
-woman,36-45,single,no,fair,yes,nearly every day,nearly every day,nearly every day,more than half the days,yes,infrequently,over a year ago,no,no,yes,good,substance related
-woman,26-35,divorced,no,poor,no,more than half the days,not at all,several days,nearly every day,no,daily,never,yes,no,yes,fair,personality disorder
-man,18-25,divorced,yes,fair,yes,several days,nearly every day,several days,several days,yes,infrequently,in the last 2 weeks,yes,no,no,poor,development disorder
-man,>70,married,yes,fair,no,not at all,not at all,not at all,nearly every day,yes,never,over a year ago,no,no,yes,poor,development disorder
-woman,18-25,in a relationship,yes,fair,no,nearly every day,not at all,several days,several days,yes,monthly,over 2 weeks ago,yes,no,no,good,development disorder
-man,18-25,married,yes,poor,yes,more than half the days,several days,not at all,several days,no,infrequently,over a year ago,yes,no,yes,fair,schizophrenia
-woman,26-35,single,no,good,yes,not at all,more than half the days,nearly every day,not at all,yes,monthly,over a month ago,yes,no,no,poor,development disorder
-woman,36-45,widowed,yes,poor,no,several days,nearly every day,more than half the days,nearly every day,no,weekly,over a year ago,no,yes,no,poor,anxiety disorder
-woman,26-35,other,no,good,yes,not at all,not at all,more than half the days,nearly every day,no,monthly,in the last 2 weeks,no,no,no,good,personality disorder
-woman,36-45,in a relationship,yes,poor,no,nearly every day,not at all,more than half the days,not at all,no,never,over 3 months ago,no,yes,yes,poor,eating disorder
-man,>70,widowed,no,good,no,more than half the days,nearly every day,not at all,several days,yes,monthly,over 3 months ago,yes,yes,no,poor,anxiety disorder
-woman,>70,in a relationship,no,poor,yes,nearly every day,several days,several days,several days,yes,monthly,over a month ago,no,no,yes,fair,schizophrenia
-woman,>70,in a relationship,yes,fair,no,nearly every day,nearly every day,more than half the days,several days,no,never,over a year ago,yes,yes,no,fair,psychosis
-woman,36-45,married,no,fair,no,more than half the days,more than half the days,nearly every day,several days,no,never,over 3 months ago,yes,yes,no,poor,anxiety disorder
-woman,36-45,widowed,no,fair,yes,several days,more than half the days,nearly every day,not at all,no,daily,over 2 weeks ago,yes,yes,yes,poor,personality disorder
-woman,36-45,married,no,fair,no,nearly every day,not at all,not at all,nearly every day,no,infrequently,never,no,yes,no,fair,psychosis
-woman,36-45,single,yes,fair,no,not at all,more than half the days,several days,several days,yes,infrequently,over 3 months ago,yes,yes,no,good,cognitive disorder
-woman,18-25,other,yes,good,no,nearly every day,not at all,more than half the days,more than half the days,yes,weekly,over 3 months ago,no,no,yes,poor,personality disorder
-man,18-25,in a relationship,no,fair,no,nearly every day,nearly every day,several days,not at all,yes,weekly,over a year ago,yes,yes,no,good,substance related
-woman,36-45,in a relationship,no,good,yes,more than half the days,not at all,nearly every day,not at all,yes,weekly,never,no,no,yes,fair,eating disorder
-man,18-25,widowed,yes,fair,yes,nearly every day,nearly every day,not at all,not at all,yes,daily,over 2 weeks ago,no,yes,yes,good,anxiety disorder
-man,18-25,married,no,good,yes,nearly every day,several days,nearly every day,nearly every day,yes,infrequently,over 3 months ago,no,no,no,poor,psychosis
-man,26-35,single,no,fair,no,several days,nearly every day,several days,several days,yes,daily,never,no,no,yes,fair,personality disorder
-man,>70,divorced,no,fair,yes,more than half the days,nearly every day,not at all,several days,no,never,over 2 weeks ago,no,yes,no,fair,eating disorder
-woman,>70,widowed,no,fair,yes,not at all,nearly every day,nearly every day,not at all,no,infrequently,over 3 months ago,no,yes,no,poor,schizophrenia
-woman,18-25,widowed,yes,fair,no,nearly every day,not at all,not at all,nearly every day,yes,weekly,over 2 weeks ago,no,yes,yes,poor,eating disorder
-man,18-25,married,yes,poor,yes,not at all,several days,several days,not at all,yes,weekly,in the last 2 weeks,yes,yes,no,fair,anxiety disorder
-woman,36-45,single,yes,good,no,nearly every day,several days,not at all,nearly every day,yes,weekly,over 2 weeks ago,yes,no,yes,good,anxiety disorder
-woman,18-25,divorced,yes,fair,yes,several days,more than half the days,nearly every day,not at all,no,weekly,over 2 weeks ago,no,no,no,poor,schizophrenia
-man,>70,divorced,yes,fair,no,several days,nearly every day,more than half the days,several days,yes,monthly,never,yes,yes,yes,good,substance related
-man,36-45,divorced,no,good,no,more than half the days,more than half the days,not at all,nearly every day,no,weekly,over a month ago,yes,yes,yes,poor,development disorder
-man,36-45,other,no,poor,no,nearly every day,several days,several days,several days,yes,never,never,no,yes,yes,good,psychosis
-woman,18-25,widowed,yes,good,no,more than half the days,more than half the days,several days,nearly every day,no,monthly,in the last 2 weeks,yes,no,no,good,anxiety disorder
-man,18-25,single,no,fair,no,nearly every day,nearly every day,more than half the days,several days,no,weekly,never,no,yes,no,fair,personality disorder
-man,26-35,single,yes,good,no,not at all,not at all,not at all,not at all,yes,infrequently,in the last 2 weeks,no,no,yes,poor,substance related
-woman,>70,other,yes,good,yes,several days,several days,nearly every day,more than half the days,no,monthly,over 2 weeks ago,no,no,yes,fair,psychosis
-man,36-45,in a relationship,yes,poor,yes,more than half the days,several days,not at all,more than half the days,yes,infrequently,over a year ago,no,yes,yes,fair,mood disorder
-man,18-25,married,no,good,yes,more than half the days,not at all,nearly every day,more than half the days,no,daily,over a month ago,no,yes,yes,good,sleep disorder
-man,>70,single,yes,poor,yes,several days,more than half the days,several days,more than half the days,no,daily,over a year ago,yes,no,yes,fair,substance related
-woman,36-45,widowed,yes,good,yes,nearly every day,nearly every day,nearly every day,not at all,no,never,over a year ago,no,no,no,fair,cognitive disorder
-man,>70,in a relationship,yes,good,no,more than half the days,nearly every day,several days,more than half the days,no,infrequently,in the last 2 weeks,yes,no,yes,poor,cognitive disorder
-man,>70,widowed,no,fair,yes,not at all,nearly every day,more than half the days,not at all,yes,never,over a month ago,no,no,yes,fair,schizophrenia
-man,36-45,single,no,good,no,several days,nearly every day,more than half the days,more than half the days,yes,never,in the last 2 weeks,yes,yes,yes,fair,schizophrenia
-man,26-35,other,no,fair,no,more than half the days,several days,not at all,more than half the days,yes,never,in the last 2 weeks,yes,no,yes,fair,eating disorder
-woman,36-45,other,no,good,yes,several days,not at all,nearly every day,several days,no,weekly,over 2 weeks ago,yes,no,yes,fair,development disorder
-woman,26-35,in a relationship,no,poor,yes,nearly every day,nearly every day,several days,several days,no,infrequently,over 2 weeks ago,yes,yes,no,good,substance related
-woman,18-25,married,yes,fair,yes,not at all,nearly every day,more than half the days,more than half the days,no,infrequently,in the last 2 weeks,yes,yes,no,good,sleep disorder
-woman,>70,single,yes,good,yes,more than half the days,more than half the days,nearly every day,several days,no,monthly,never,no,no,no,poor,development disorder
-woman,>70,other,yes,poor,yes,not at all,not at all,more than half the days,nearly every day,yes,infrequently,over 2 weeks ago,no,yes,no,poor,mood disorder
-man,36-45,in a relationship,yes,poor,no,several days,nearly every day,more than half the days,nearly every day,yes,never,never,yes,yes,no,good,eating disorder
-woman,36-45,widowed,yes,poor,no,more than half the days,several days,nearly every day,nearly every day,yes,daily,over 2 weeks ago,no,no,yes,fair,sleep disorder
-man,26-35,married,no,good,no,more than half the days,several days,several days,not at all,no,weekly,over 2 weeks ago,no,no,yes,poor,psychosis
-woman,>70,widowed,no,poor,yes,not at all,several days,several days,not at all,no,daily,over a month ago,yes,no,no,fair,eating disorder
-man,36-45,married,no,poor,yes,more than half the days,not at all,not at all,nearly every day,yes,daily,in the last 2 weeks,no,no,yes,poor,mood disorder
-man,>70,other,yes,poor,yes,several days,nearly every day,several days,more than half the days,no,weekly,in the last 2 weeks,no,yes,no,fair,sleep disorder
-woman,18-25,in a relationship,no,poor,yes,not at all,more than half the days,several days,nearly every day,yes,infrequently,over 3 months ago,no,yes,no,fair,eating disorder
-man,18-25,married,no,fair,yes,nearly every day,nearly every day,more than half the days,several days,no,never,over 2 weeks ago,no,yes,no,fair,psychosis
-woman,>70,single,no,fair,yes,nearly every day,several days,more than half the days,nearly every day,yes,monthly,over a month ago,yes,no,yes,good,cognitive disorder
-woman,36-45,in a relationship,no,fair,yes,nearly every day,more than half the days,nearly every day,not at all,no,infrequently,over 2 weeks ago,yes,yes,no,good,substance related
-man,36-45,single,yes,poor,yes,nearly every day,not at all,more than half the days,nearly every day,yes,daily,over 3 months ago,no,yes,yes,poor,sleep disorder
-man,36-45,married,no,fair,yes,nearly every day,not at all,more than half the days,nearly every day,yes,daily,over 2 weeks ago,no,yes,yes,fair,mood disorder
-man,26-35,single,no,good,no,nearly every day,not at all,not at all,several days,yes,weekly,over a year ago,yes,yes,no,poor,schizophrenia
-woman,36-45,single,no,fair,yes,nearly every day,not at all,more than half the days,not at all,no,monthly,in the last 2 weeks,no,no,no,good,sleep disorder
-woman,>70,single,no,poor,no,nearly every day,several days,nearly every day,nearly every day,yes,weekly,over a year ago,yes,no,yes,good,substance related
-man,36-45,in a relationship,no,fair,yes,more than half the days,nearly every day,nearly every day,several days,yes,monthly,over 3 months ago,no,no,no,poor,schizophrenia
-woman,26-35,widowed,no,fair,no,nearly every day,nearly every day,several days,more than half the days,yes,monthly,over 2 weeks ago,yes,yes,yes,poor,schizophrenia
-man,26-35,in a relationship,yes,fair,yes,several days,more than half the days,nearly every day,several days,no,weekly,over a year ago,no,no,yes,poor,development disorder
-woman,26-35,in a relationship,yes,fair,no,several days,several days,several days,several days,no,infrequently,never,no,no,yes,poor,sleep disorder
-man,26-35,married,no,poor,yes,more than half the days,nearly every day,several days,more than half the days,no,never,over 2 weeks ago,no,yes,yes,good,psychosis
+gender,age,relationship_status,feeling_down_depressed_hopeless,been_in_therapy,current_eating_habits,overwhelming_sadness_grief_depression,little_interest_pleasure,thought_of_dying,currently_employed,drinks_alcohol,thought_about_suicide,currently_experiencing_anxiety,poor_appetite_or_overeating,takes_any_medication,sleeping_habits,class_label
+Female,above 65,In relationship,Not at all,No,Good,No,Several Days,Several Days,Yes,Weekly,Over 2 weeks ago,No,Nearly everyday,No,Good,eating disorder
+Female,55-65,In relationship,Not at all,No,Good,No,Several Days,Several Days,No,Weekly,3 month ago,Yes,Nearly everyday,Yes,Fair,personality disorder
+Male,above 65,In relationship,Nearly everyday,Yes,Fair,Yes,Not at all,More than half te days,No,Monthly,Never,No,More than half te days,No,Poor,personality disorder
+Female,18-25,Single,Not at all,Yes,Fair,No,Not at all,More than half te days,Yes,Daily,A year Ago ,No,Not at all,Yes,Fair,psychosis
+Female,above 65,Widowed,Not at all,Yes,Fair,Yes,Not at all,Not at all,Yes,Weekly,Never,Yes,Several Days,Yes,Good,psychosis
+Female,40-55,Divorced,More than half the days,Yes,Fair,Yes,Several Days,More than half te days,No,Infrequently,A month ago,No,Nearly everyday,No,Fair,development disorder
+Female,26-40,In relationship,Several Days,No,Fair,Yes,More than half te days,Nearly everyday,No,Monthly,A year Ago ,Yes,Nearly everyday,Yes,Poor,eating disorder
+Female,40-55,Divorced,Nearly everyday,Yes,Poor,No,More than half te days,Nearly everyday,Yes,Weekly,A year Ago ,Yes,Several Days,Yes,Poor,substance related
+Male,above 65,Married,Several Days,Yes,Poor,Yes,Nearly everyday,More than half te days,Yes,Never,In last weeks,Yes,Several Days,Yes,Poor,mood disorder
+Female,55-65,Married,Nearly everyday,Yes,Fair,No,Several Days,Several Days,No,Daily,A month ago,Yes,More than half te days,Yes,Fair,personality disorder
+Male,above 65,In relationship,Not at all,No,Good,Yes,Nearly everyday,Nearly everyday,Yes,Monthly,Never,No,More than half te days,Yes,Good,substance related
+Male,26-40,Married,Several Days,Yes,Good,No,Nearly everyday,More than half te days,Yes,Daily,3 month ago,Yes,Nearly everyday,Yes,Good,eating disorder
+Female,55-65,Divorced,Not at all,Yes,Fair,Yes,More than half te days,Nearly everyday,Yes,Infrequently,Over 2 weeks ago,No,Several Days,Yes,Fair,anxiety disorder
+Male,above 65,Married,More than half the days,Yes,Good,No,More than half te days,More than half te days,No,Daily,3 month ago,No,More than half te days,No,Fair,anxiety disorder
+Female,18-25,Married,More than half the days,Yes,Poor,Yes,Several Days,Not at all,No,Never,3 month ago,No,Several Days,No,Good,cognitive disorder
+Female,18-25,Single,Not at all,Yes,Good,Yes,Nearly everyday,Not at all,Yes,Infrequently,A year Ago ,No,Nearly everyday,Yes,Fair,personality disorder
+Female,40-55,Divorced,Nearly everyday,Yes,Fair,No,Nearly everyday,More than half te days,No,Monthly,Over 2 weeks ago,No,Nearly everyday,Yes,Poor,cognitive disorder
+Female,above 65,Married,Not at all,Yes,Fair,Yes,Several Days,More than half te days,Yes,Infrequently,Over 2 weeks ago,Yes,Nearly everyday,No,Good,personality disorder
+Female,26-40,Widowed,Not at all,Yes,Fair,Yes,Not at all,Nearly everyday,No,Weekly,Over 2 weeks ago,No,Nearly everyday,Yes,Good,cognitive disorder
+Male,above 65,Divorced,More than half the days,No,Good,Yes,Nearly everyday,Nearly everyday,No,Daily,Never,Yes,More than half te days,Yes,Good,anxiety disorder
+Male,18-25,Married,Nearly everyday,No,Poor,Yes,Not at all,Not at all,No,Monthly,Never,Yes,Nearly everyday,No,Good,personality disorder
+Female,26-40,Divorced,Nearly everyday,No,Poor,Yes,Nearly everyday,Nearly everyday,No,Daily,Over 2 weeks ago,No,Nearly everyday,No,Fair,schizophrenia
+Male,55-65,In relationship,Not at all,Yes,Fair,No,More than half te days,Nearly everyday,Yes,Daily,Never,Yes,Several Days,Yes,Poor,cognitive disorder
+Female,above 65,In relationship,More than half the days,No,Poor,No,Several Days,Nearly everyday,No,Never,Over 2 weeks ago,No,More than half te days,Yes,Good,substance related
+Female,40-55,Single,More than half the days,No,Good,No,Nearly everyday,More than half te days,Yes,Monthly,A month ago,Yes,More than half te days,Yes,Fair,mood disorder
+Male,18-25,In relationship,Nearly everyday,Yes,Fair,Yes,Not at all,Nearly everyday,No,Weekly,Never,No,Not at all,Yes,Fair,psychosis
+Male,18-25,Married,More than half the days,Yes,Fair,Yes,Not at all,Not at all,Yes,Infrequently,Over 2 weeks ago,Yes,More than half te days,No,Fair,personality disorder
+Female,26-40,In relationship,Several Days,Yes,Poor,No,More than half te days,Not at all,Yes,Monthly,A month ago,No,Nearly everyday,No,Good,psychosis
+Male,above 65,Single,More than half the days,Yes,Good,No,Not at all,Not at all,Yes,Daily,3 month ago,No,Nearly everyday,No,Good,mood disorder
+Male,above 65,Married,Nearly everyday,No,Good,No,Nearly everyday,Not at all,Yes,Daily,A year Ago ,No,More than half te days,Yes,Fair,cognitive disorder
+Male,40-55,Married,More than half the days,Yes,Good,Yes,More than half te days,Several Days,No,Never,A year Ago ,Yes,Several Days,Yes,Fair,anxiety disorder
+Male,18-25,Divorced,Not at all,No,Poor,No,Not at all,Not at all,No,Weekly,Never,No,Nearly everyday,Yes,Good,psychosis
+Male,55-65,Divorced,Nearly everyday,Yes,Fair,No,More than half te days,More than half te days,No,Monthly,A month ago,Yes,Several Days,Yes,Fair,personality disorder
+Male,18-25,In relationship,More than half the days,Yes,Fair,Yes,More than half te days,Several Days,No,Weekly,3 month ago,Yes,Nearly everyday,Yes,Fair,sleep disorder
+Male,40-55,In relationship,Several Days,Yes,Fair,No,Several Days,Several Days,Yes,Daily,A year Ago ,Yes,Not at all,Yes,Good,sleep disorder
+Male,40-55,Single,Several Days,No,Good,No,Several Days,Several Days,Yes,Monthly,A year Ago ,Yes,More than half te days,Yes,Fair,substance related
+Female,55-65,Single,Not at all,Yes,Fair,Yes,More than half te days,Several Days,Yes,Never,Over 2 weeks ago,Yes,More than half te days,No,Poor,mood disorder
+Female,40-55,Single,Several Days,No,Good,Yes,More than half te days,Nearly everyday,No,Daily,A month ago,No,Nearly everyday,Yes,Fair,sleep disorder
+Female,above 65,Divorced,Not at all,No,Poor,Yes,More than half te days,More than half te days,No,Infrequently,In last weeks,Yes,More than half te days,No,Fair,sleep disorder
+Male,26-40,Single,Several Days,Yes,Good,No,More than half te days,Not at all,No,Weekly,3 month ago,No,Nearly everyday,Yes,Fair,anxiety disorder
+Female,26-40,Widowed,More than half the days,No,Poor,No,Nearly everyday,Several Days,Yes,Infrequently,A year Ago ,Yes,More than half te days,No,Good,schizophrenia
+Male,above 65,Single,Not at all,No,Good,Yes,Nearly everyday,More than half te days,Yes,Daily,Over 2 weeks ago,Yes,Not at all,No,Poor,substance related
+Male,55-65,Single,More than half the days,No,Fair,No,Several Days,Nearly everyday,No,Infrequently,3 month ago,No,Nearly everyday,No,Poor,psychosis
+Female,26-40,Married,Several Days,No,Good,Yes,Not at all,Not at all,Yes,Monthly,A month ago,No,Several Days,Yes,Poor,substance related
+Female,above 65,Married,More than half the days,Yes,Good,No,More than half te days,Not at all,Yes,Weekly,A year Ago ,No,More than half te days,No,Poor,eating disorder
+Male,40-55,In relationship,Several Days,Yes,Good,Yes,Nearly everyday,More than half te days,No,Weekly,A year Ago ,Yes,Nearly everyday,Yes,Good,substance related
+Male,18-25,Married,Nearly everyday,No,Poor,No,More than half te days,Nearly everyday,No,Never,A year Ago ,No,Several Days,Yes,Fair,psychosis
+Male,40-55,Divorced,Not at all,No,Poor,No,Not at all,Several Days,No,Weekly,Never,No,Several Days,Yes,Fair,sleep disorder
+Female,55-65,Widowed,Not at all,Yes,Poor,Yes,Nearly everyday,More than half te days,No,Infrequently,Never,Yes,Not at all,No,Good,cognitive disorder
+Male,55-65,Single,Nearly everyday,No,Good,Yes,Several Days,Not at all,Yes,Monthly,In last weeks,No,Nearly everyday,Yes,Poor,substance related
+Female,26-40,In relationship,Nearly everyday,No,Poor,Yes,Several Days,Nearly everyday,No,Never,Never,Yes,More than half te days,Yes,Poor,development disorder
+Male,18-25,Married,Not at all,Yes,Poor,Yes,Several Days,Several Days,Yes,Daily,Over 2 weeks ago,No,Not at all,No,Good,eating disorder
+Female,18-25,Divorced,Several Days,No,Poor,No,More than half te days,Not at all,No,Infrequently,Over 2 weeks ago,Yes,Not at all,No,Good,mood disorder
+Male,18-25,Married,Nearly everyday,Yes,Fair,Yes,Several Days,Several Days,No,Monthly,In last weeks,Yes,More than half te days,No,Fair,mood disorder
+Male,26-40,Widowed,Not at all,No,Good,Yes,Several Days,More than half te days,No,Monthly,A month ago,No,Not at all,Yes,Poor,schizophrenia
+Female,26-40,Single,Not at all,Yes,Good,No,Several Days,More than half te days,Yes,Never,In last weeks,Yes,Nearly everyday,No,Fair,personality disorder
+Female,26-40,In relationship,Not at all,No,Poor,No,More than half te days,Not at all,No,Never,3 month ago,No,More than half te days,Yes,Poor,eating disorder
+Male,18-25,Divorced,Nearly everyday,Yes,Good,Yes,More than half te days,Several Days,Yes,Weekly,A year Ago ,No,Not at all,Yes,Good,eating disorder
+Male,above 65,Divorced,Nearly everyday,Yes,Poor,No,More than half te days,Not at all,Yes,Infrequently,Never,Yes,Several Days,No,Good,substance related
+Male,26-40,Divorced,Not at all,No,Poor,Yes,Several Days,Several Days,No,Infrequently,Over 2 weeks ago,No,Several Days,No,Poor,personality disorder
+Female,40-55,In relationship,Several Days,Yes,Fair,Yes,Nearly everyday,Nearly everyday,No,Never,Never,No,More than half te days,Yes,Good,mood disorder
+Male,above 65,Divorced,Nearly everyday,Yes,Good,Yes,More than half te days,Several Days,No,Weekly,In last weeks,Yes,More than half te days,Yes,Good,cognitive disorder
+Female,above 65,Widowed,Not at all,No,Fair,No,More than half te days,Several Days,Yes,Infrequently,Never,Yes,Several Days,No,Poor,psychosis
+Male,40-55,In relationship,More than half the days,Yes,Fair,No,More than half te days,Not at all,Yes,Daily,A year Ago ,Yes,Not at all,Yes,Poor,development disorder
+Male,26-40,Divorced,More than half the days,No,Poor,No,Several Days,More than half te days,Yes,Infrequently,A year Ago ,No,Nearly everyday,Yes,Fair,eating disorder
+Male,40-55,Married,Nearly everyday,Yes,Poor,Yes,More than half te days,More than half te days,No,Never,A year Ago ,Yes,More than half te days,Yes,Fair,mood disorder
+Female,18-25,Divorced,Several Days,Yes,Good,No,Nearly everyday,More than half te days,Yes,Monthly,In last weeks,No,Nearly everyday,No,Fair,anxiety disorder
+Female,55-65,Married,Not at all,No,Fair,Yes,Not at all,Nearly everyday,No,Infrequently,Never,No,Several Days,No,Poor,development disorder
+Female,above 65,Widowed,Nearly everyday,No,Poor,No,Several Days,Not at all,No,Daily,Over 2 weeks ago,No,Not at all,No,Fair,anxiety disorder
+Male,55-65,Married,Nearly everyday,No,Poor,Yes,Not at all,Not at all,No,Never,3 month ago,No,More than half te days,Yes,Good,sleep disorder
+Male,above 65,Single,Nearly everyday,No,Fair,No,Nearly everyday,Not at all,Yes,Never,A month ago,No,More than half te days,Yes,Fair,anxiety disorder
+Female,18-25,Widowed,More than half the days,No,Poor,Yes,More than half te days,Nearly everyday,No,Monthly,In last weeks,Yes,More than half te days,Yes,Poor,development disorder
+Male,40-55,Single,Nearly everyday,No,Fair,No,Not at all,Several Days,Yes,Infrequently,A month ago,Yes,Several Days,No,Fair,personality disorder
+Female,above 65,Widowed,More than half the days,No,Fair,No,More than half te days,Several Days,No,Never,In last weeks,No,More than half te days,No,Poor,development disorder
+Male,26-40,In relationship,Several Days,No,Good,Yes,Several Days,More than half te days,No,Never,A year Ago ,No,More than half te days,No,Good,personality disorder
+Male,26-40,Married,More than half the days,No,Poor,Yes,Nearly everyday,Nearly everyday,No,Never,A month ago,Yes,Not at all,No,Poor,mood disorder
+Female,40-55,Divorced,Nearly everyday,No,Fair,No,Not at all,Several Days,Yes,Weekly,Over 2 weeks ago,Yes,Not at all,No,Good,eating disorder
+Male,40-55,Married,Not at all,Yes,Good,Yes,More than half te days,Not at all,Yes,Daily,A month ago,No,Several Days,No,Good,eating disorder
+Male,26-40,Single,Several Days,Yes,Good,Yes,Several Days,Not at all,Yes,Never,3 month ago,No,Not at all,No,Fair,personality disorder
+Female,26-40,Divorced,Nearly everyday,Yes,Good,Yes,More than half te days,Several Days,Yes,Infrequently,3 month ago,Yes,Several Days,No,Good,development disorder
+Male,18-25,Divorced,More than half the days,Yes,Poor,Yes,Not at all,Not at all,Yes,Weekly,A month ago,Yes,Several Days,Yes,Good,personality disorder
+Female,18-25,Divorced,Several Days,Yes,Good,No,Nearly everyday,Several Days,No,Monthly,Never,No,More than half te days,No,Good,cognitive disorder
+Female,above 65,Divorced,Not at all,Yes,Good,No,Nearly everyday,Several Days,Yes,Never,3 month ago,Yes,Nearly everyday,Yes,Fair,development disorder
+Male,40-55,In relationship,Several Days,Yes,Fair,Yes,Not at all,Several Days,No,Infrequently,Never,Yes,Several Days,No,Good,development disorder
+Male,above 65,In relationship,Nearly everyday,Yes,Poor,Yes,Nearly everyday,Not at all,No,Infrequently,3 month ago,Yes,Nearly everyday,No,Good,schizophrenia
+Male,26-40,Widowed,Not at all,Yes,Good,No,More than half te days,Several Days,No,Weekly,Over 2 weeks ago,Yes,Several Days,Yes,Good,personality disorder
+Male,40-55,Married,More than half the days,Yes,Good,Yes,Not at all,Several Days,Yes,Monthly,In last weeks,Yes,More than half te days,Yes,Good,cognitive disorder
+Male,18-25,Divorced,Nearly everyday,No,Fair,No,More than half te days,More than half te days,Yes,Never,A year Ago ,No,Nearly everyday,No,Poor,substance related
+Female,18-25,Single,Nearly everyday,No,Good,No,More than half te days,Nearly everyday,Yes,Weekly,3 month ago,Yes,More than half te days,No,Poor,personality disorder
+Female,26-40,Married,Several Days,Yes,Fair,No,Nearly everyday,More than half te days,Yes,Weekly,A month ago,No,More than half te days,Yes,Good,personality disorder
+Female,26-40,Divorced,More than half the days,No,Good,Yes,Several Days,Nearly everyday,Yes,Never,A year Ago ,No,Several Days,No,Good,cognitive disorder
+Male,26-40,Married,Nearly everyday,Yes,Fair,No,Nearly everyday,Nearly everyday,Yes,Monthly,Never,Yes,Several Days,Yes,Good,eating disorder
+Male,55-65,Divorced,Not at all,No,Poor,No,More than half te days,Not at all,No,Infrequently,3 month ago,No,More than half te days,Yes,Poor,substance related
+Male,18-25,Single,More than half the days,Yes,Good,No,More than half te days,More than half te days,Yes,Infrequently,Over 2 weeks ago,No,Not at all,No,Fair,development disorder
+Female,55-65,Married,Nearly everyday,No,Poor,Yes,Several Days,More than half te days,Yes,Never,In last weeks,Yes,Several Days,No,Poor,sleep disorder
+Female,above 65,Single,Several Days,No,Fair,Yes,Several Days,Nearly everyday,Yes,Weekly,3 month ago,No,Not at all,No,Fair,development disorder
+Male,18-25,Widowed,Nearly everyday,No,Poor,No,Not at all,More than half te days,Yes,Daily,3 month ago,No,More than half te days,Yes,Good,cognitive disorder
+Female,55-65,In relationship,Several Days,No,Poor,No,Several Days,Nearly everyday,Yes,Weekly,Never,Yes,More than half te days,No,Good,psychosis
+Female,55-65,Divorced,More than half the days,No,Poor,No,Nearly everyday,Several Days,No,Daily,A month ago,Yes,More than half te days,Yes,Fair,cognitive disorder
+Male,above 65,Divorced,Not at all,Yes,Good,Yes,Nearly everyday,Nearly everyday,No,Never,Never,Yes,More than half te days,No,Good,development disorder

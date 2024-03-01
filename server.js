@@ -22,6 +22,7 @@ const bodyParser = require("body-parser");
 const sendEmail = require("./Routes/SendEmailRoute");
 const verificationCodeRoute = require("./Routes/VerificationRoute");
 const questionnaireRoute = require("./Routes/QuestionnaireRoute");
+const scheduleRoute = require("./Routes/ScheduleRoute");
 // Connect to the database
 Dbconnect();
 
@@ -56,12 +57,7 @@ app.use("/api/medicalDiagnosis", medicalDiagnosisRoute);
 app.use("/api/sendEmail", sendEmail);
 app.use("/api/verification", verificationCodeRoute);
 app.use("/api/questionnaire", questionnaireRoute);
-
-const agent = new https.Agent({
-  keepAlive: true,
-  maxSockets: 100,
-  // Other options as needed
-});
+app.use("/api/schedule", scheduleRoute);
 
 // Create an HTTPS server
 // const server = https.createServer(
@@ -86,50 +82,52 @@ const server = app.listen(port, () => {
 const io = new socketIo.Server(server, {
   cors: {
     origin: "*",
-    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
 // io.on("connection", (socket) => {
-//   socket.on("setup", (userData) => {
-//     socket.join(userData.id);
-//     socket.emit("connected", userData.id);
-//   });
-//   socket.on("join room", (id) => {
-//     console.log(id);
-//     socket.emit("joined room", uuidV4);
-//   });
-//   socket.on("typing", (room) => socket.in(room).emit("typing"));
-//   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+//   console.log("A user connected");
 
-//   socket.on("new message", (newMessageRecieve) => {
-//     var chat = newMessageRecieve.chatId;
-//     console.log(newMessageRecieve);
-//     socket.emit("test", "testing emit");
-//     if (!chat.users) console.log("chats.users is not defined");
-//     chat.users.forEach((user) => {
-//       if (user._id == newMessageRecieve.sender._id) return;
-//       socket.in(user._id).emit("message recieved", newMessageRecieve);
+//   // Expecting a 'username' event from the client
+//   socket.on("targetUserID", (targetUserID) => {
+//     socket.join(targetUserID); // Join a room based on the provided username
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("User disconnected");
+//   });
+
+//   socket.on("chat message", ({ message, targetUserID }) => {
+//     // Emit the message to the specific room (targetUsername)
+//     io.to(targetUserID).emit("chat message", {
+//       targetUserID: targetUserID,
+//       message,
 //     });
 //   });
 // });
 
 io.on("connection", (socket) => {
-  socket.emit("me", socket.id);
+  console.log("A user connected");
+
+  // Expecting a 'userID' event from the client
+  socket.on("userID", (userID) => {
+    // Join a room based on the provided userID
+    socket.join(userID);
+    console.log(`User ${userID} joined the chat`);
+  });
 
   socket.on("disconnect", () => {
-    socket.broadcast.emit("callEnded");
+    console.log("User disconnected");
   });
 
-  socket.on("callUser", (data) => {
-    io.to(data.userToCall).emit("callUser", {
-      signal: data.signalData,
-      from: data.from,
-      name: data.name,
+  socket.on("chat message", ({ message, targetUserID, senderName }) => {
+    console.log(senderName);
+    // Emit the message to the specific room (targetUserID)
+    io.to(targetUserID).emit("chat message", {
+      senderUserID: socket.id, // You can identify the sender by socket id
+      message,
+      senderName,
     });
-  });
-
-  socket.on("answerCall", (data) => {
-    io.to(data.to).emit("callAccepted", data.signal);
   });
 });

@@ -2,29 +2,45 @@ const mongoose = require("mongoose");
 
 const therapistSchema = new mongoose.Schema(
   {
-    certification: {
+    cv: {
       type: String,
       required: true,
     },
-    proffesion: {
-      type: String,
-      required: true,
-    },
-    availabeDate: [
+    speciality: [{ type: String }],
+    availabeDays: [
       {
-        type: Date,
-        default: Date.now,
+        type: String,
       },
     ],
     description: {
       type: String,
       requried: true,
     },
-
+    availabelTime: [
+      {
+        key: String,
+        value: String,
+      },
+    ],
+    pricePerHour: {
+      type: String,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    clients: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    schedules: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Schedule",
+      },
+    ],
     // other therapist fields...
   },
   { timestamps: true }

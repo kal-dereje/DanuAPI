@@ -1,4 +1,6 @@
 const User = require("../Model/User");
+const ClientModel = require("../Model/Client");
+const TherapistModel = require("../Model/Therapist");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -50,15 +52,34 @@ const UserCreate = async (req, res) => {
 
 //Login
 const LoginUser = async (req, res) => {
-  console.log("kaag");
   const { email, password } = req.body;
   console.log(req.body);
   try {
     const users = await User.Login(email, password);
-
-    //token
+    const user = await User.findOne({ email });
     const token = createToken(users._id);
-    res.status(200).json({ message: "sucess!", token: token });
+    if (user.role == "client") {
+      const client = await ClientModel.findOne({ user: user._id });
+      res
+        .status(200)
+        .json({ message: "sucess!", token: token, user: user, client: client });
+    } else if (user.role == "therapist") {
+      const therapist = await TherapistModel.findOne({
+        user: user._id,
+      }).populate("user");
+      res.status(200).json({
+        message: "sucess!",
+        token: token,
+        user: user,
+        therapist: therapist,
+      });
+    } else {
+      res.status(200).json({
+        message: "sucess!",
+        token: token,
+        user: user,
+      });
+    }
   } catch (err) {
     res.status(401).json({ message: err.message });
   }
