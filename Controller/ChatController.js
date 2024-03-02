@@ -13,7 +13,7 @@ const createChat = async (req, res) => {
           { sender: receiver, receiver: sender },
         ],
       },
-      { $push: { messages: formattedMessage } },
+      { $push: { messages: formattedMessage }, sender, receiver },
       { new: true, upsert: true }
     );
 
@@ -24,6 +24,29 @@ const createChat = async (req, res) => {
   }
 };
 
+const getChatByReciverID = async (req, res) => {
+  const { senderId, receiverId } = req.params;
+  console.log("kalab");
+  console.log(senderId, receiverId);
+  try {
+    // Find the chat between the sender and receiver
+    const chat = await ChatModel.findOne({
+      $or: [
+        { sender: senderId, receiver: receiverId },
+        { sender: receiverId, receiver: senderId },
+      ],
+    });
+
+    if (!chat) {
+      return res.status(200).json({ messages: [] });
+    }
+    console.log(chat);
+    res.status(200).json(chat);
+  } catch (err) {
+    console.error("Error retrieving chat:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 const getChat = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -49,4 +72,5 @@ module.exports = {
   getOneChat,
   updateChat,
   deleteChat,
+  getChatByReciverID,
 };
