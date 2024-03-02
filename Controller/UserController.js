@@ -59,14 +59,18 @@ const LoginUser = async (req, res) => {
     const user = await User.findOne({ email });
     const token = createToken(users._id);
     if (user.role == "client") {
-      const client = await ClientModel.findOne({ user: user._id });
+      const client = await ClientModel.findOne({ user: user._id }).populate(
+        "therapistList"
+      );
       res
         .status(200)
         .json({ message: "sucess!", token: token, user: user, client: client });
     } else if (user.role == "therapist") {
       const therapist = await TherapistModel.findOne({
         user: user._id,
-      }).populate("user");
+      })
+        .populate("user")
+        .populate("clients");
       res.status(200).json({
         message: "sucess!",
         token: token,
@@ -94,6 +98,33 @@ const GetUser = async (req, res) => {
     res.status(401).json({ message: err.message });
   }
 };
+
+const addOrChangePicture = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const { profilePic } = req.files;
+
+    const user = await User.findById(userId);
+    console.log(profilePic);
+    if (user) {
+      const test = await User.findOneAndUpdate(
+        { _id: userId }, // Your query to find the document
+        {
+          $set: {
+            profilePic: profilePic[0]["filename"],
+          },
+        }, // Use $set to specify the field and its new value
+        { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
+      );
+
+      res
+        .status(201)
+        .json({ message: "Picture add or update scuessfully", test });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 // Get one
 const GetOneUser = async (req, res) => {
   try {
@@ -115,7 +146,7 @@ const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const updatedData = req.body;
-
+    console.log(updatedData);
     const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {
       new: true,
     });
@@ -128,7 +159,6 @@ const UpdateUser = async (req, res) => {
   } catch (err) {
     res.status(422).json({ message: err.message });
   }
-  // res.status(200).json({ message: "this is update" });
 };
 
 //Delete one
@@ -156,4 +186,5 @@ module.exports = {
   UpdateUser,
   DeleteUser,
   LoginUser,
+  addOrChangePicture,
 };

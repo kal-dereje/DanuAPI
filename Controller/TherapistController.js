@@ -71,16 +71,22 @@ const getUserProfilePicture = async (req, res) => {
         .json({ success: false, message: "User not found" });
     }
 
-    // Get the file path of the user's profile picture
-    const filePath = path.join(__dirname, "../uploads", user.profilePic);
+    if (user.profilePic) {
+      // Get the file path of the user's profile picture
+      const filePath = path.join(__dirname, "../uploads", user.profilePic);
 
-    // Check if the file exists
-    if (fs.existsSync(filePath)) {
-      // Send the file as a response
-      console.log(filePath);
-      res.sendFile(filePath);
+      // Check if the file exists
+      if (fs.existsSync(filePath)) {
+        // Send the file as a response
+        console.log(filePath);
+        res.sendFile(filePath);
+      } else {
+        // If the file does not exist, return a 404 error
+        res
+          .status(404)
+          .json({ success: false, message: "Profile picture not found" });
+      }
     } else {
-      // If the file does not exist, return a 404 error
       res
         .status(404)
         .json({ success: false, message: "Profile picture not found" });
