@@ -7,6 +7,8 @@ const {
   getTherapistsBySpeciality,
   getUserProfilePicture,
   getTherapistByUserId,
+  getTherapistCv,
+  getTherapistLicense,
 } = require("../Controller/TherapistController");
 
 const authentication = require("../MiddleWare/Authentication");
@@ -21,6 +23,8 @@ therapistRouter.route("/getTherapists").get(getTherapist);
 therapistRouter
   .route("/getUserProfilePicture/:userId")
   .get(getUserProfilePicture);
+therapistRouter.route("/getTherapistCv/:userId").get(getTherapistCv);
+therapistRouter.route("/getTherapistLicense/:userId").get(getTherapistLicense);
 therapistRouter
   .route("/getTherapistsBySpeciality/:speciality")
   .get(getTherapistsBySpeciality);

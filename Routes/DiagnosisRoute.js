@@ -4,6 +4,7 @@ const {
   getDiagnosis,
   getOneDiagnosis,
   updateDiagnosis,
+  getDiagnosisUsingClientAndTherapistId,
 } = require("../Controller/MedicalDiagnosis");
 
 const express = require("express");
@@ -15,6 +16,9 @@ medicalDiagnosisRouter.route("/getMedicalDiagnosis").get(getDiagnosis);
 medicalDiagnosisRouter
   .route("/getOneMedicalDiagnosis/:diagnosisId")
   .get(getOneDiagnosis);
+medicalDiagnosisRouter
+  .route("/getDiagnosisUsingClientAndTherapistId/:clientId/:therapistId")
+  .get(getDiagnosisUsingClientAndTherapistId);
 medicalDiagnosisRouter
   .route("/updateMedicalDiagnosis/:diagnosisId")
   .patch(updateDiagnosis);

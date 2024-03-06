@@ -13,7 +13,8 @@ const uploader = multer({
   storage: Storage,
 }).fields([
   { name: "profilePic", maxCount: 1 },
-  { name: "cv", maxCount: 1 }, // Adjust maxCount based on your needs
+  { name: "cv", maxCount: 1 },
+  { name: "license", maxCount: 1 },
 ]);
 
 module.exports = { uploader };

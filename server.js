@@ -23,6 +23,8 @@ const sendEmail = require("./Routes/SendEmailRoute");
 const verificationCodeRoute = require("./Routes/VerificationRoute");
 const questionnaireRoute = require("./Routes/QuestionnaireRoute");
 const scheduleRoute = require("./Routes/ScheduleRoute");
+const contactUsRoute = require("./Routes/ContactUsRoute");
+const adminRoute = require("./Routes/AdminRoute");
 // Connect to the database
 Dbconnect();
 
@@ -58,6 +60,8 @@ app.use("/api/sendEmail", sendEmail);
 app.use("/api/verification", verificationCodeRoute);
 app.use("/api/questionnaire", questionnaireRoute);
 app.use("/api/schedule", scheduleRoute);
+app.use("/api/contactUs", contactUsRoute);
+app.use("/api/admin", adminRoute);
 
 // Create an HTTPS server
 // const server = https.createServer(

@@ -1,5 +1,7 @@
 const TherapistModel = require("../Model/Therapist");
 const UserModel = require("../Model/User");
+const AproveRequestModel = require("../Model/AproveRequest");
+
 const path = require("path");
 const fs = require("fs");
 // CREATE NEW THERAPIST
@@ -7,13 +9,14 @@ const createTherapist = async (req, res) => {
   try {
     const { gender, age, description, pricePerHour, speciality, userId, days } =
       req.body;
-    const { profilePic, cv } = req.files;
+    const { profilePic, cv, license } = req.files;
 
     const user = await UserModel.findById(userId);
-    console.log(profilePic);
+    console.log(license);
     if (user) {
       const therapistModel = new TherapistModel({
         cv: cv[0]["filename"],
+        license: license[0]["filename"],
         speciality,
         description,
         pricePerHour,
@@ -28,13 +31,18 @@ const createTherapist = async (req, res) => {
             age: age,
             gender: gender,
             profilePic: profilePic[0]["filename"],
+            license: license[0]["filename"],
             attempt: true,
           },
         }, // Use $set to specify the field and its new value
         { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
       );
 
-      console.log(test);
+      const updatedAproveRequest = await AproveRequestModel.findOneAndUpdate(
+        {}, // Empty condition to match any document
+        { $addToSet: { aproveRequest: therapistModel._id } }, // Add therapistId to the array if it doesn't exist
+        { new: true, upsert: true } // Return the updated document, and create a new document if it doesn't exist
+      );
 
       res
         .status(201)
@@ -51,6 +59,8 @@ const getTherapistByUserId = async (req, res) => {
     const therapist = await TherapistModel.findOne({
       user: therapistId,
     }).populate("user");
+
+    console.log(therapist);
     res.status(200).json({ success: true, message: therapist });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
@@ -97,6 +107,92 @@ const getUserProfilePicture = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+// Define the controller function
+const getTherapistCv = async (req, res) => {
+  const { userId } = req.params; // Assuming you have a userId to identify the user
+
+  try {
+    // Find the user by userId
+    const therapist = await TherapistModel.findOne({ user: userId });
+
+    if (!therapist) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    if (therapist.cv) {
+      // Get the file path of the user's CV
+      const filePath = path.join(__dirname, "../uploads", therapist.cv);
+
+      // Read the file content
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          console.error("Error reading CV file:", err);
+          return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+        }
+
+        // Set response headers
+        res.setHeader("Content-Type", "application/pdf"); // Set the appropriate content type
+
+        // Send the file content as a response
+        res.send(data);
+      });
+    } else {
+      res.status(404).json({ success: false, message: "CV not found" });
+    }
+  } catch (error) {
+    // Handle errors
+    console.error("Error retrieving user CV:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+const getTherapistLicense = async (req, res) => {
+  const { userId } = req.params; // Assuming you have a userId to identify the user
+
+  try {
+    // Find the user by userId
+    const therapist = await TherapistModel.findOne({ user: userId });
+
+    if (!therapist) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    if (therapist.license) {
+      // Get the file path of the user's CV
+      const filePath = path.join(__dirname, "../uploads", therapist.license);
+
+      // Read the file content
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          console.error("Error reading License file:", err);
+          return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+        }
+
+        // Set response headers
+        res.setHeader("Content-Type", "application/pdf"); // Set the appropriate content type
+
+        // Send the file content as a response
+        res.send(data);
+      });
+    } else {
+      res.status(404).json({ success: false, message: "License not found" });
+    }
+  } catch (error) {
+    // Handle errors
+    console.error("Error retrieving user License:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
 //GET ALL THERAPIST
 const getTherapist = async (req, res) => {
   try {
@@ -180,7 +276,6 @@ const updateTherapist = async (req, res) => {
   }
 };
 
-//NOT FINISHED~~~~
 const deleteTherapist = async (req, res) => {
   try {
     const { therapistId } = req.params;
@@ -207,4 +302,6 @@ module.exports = {
   updateTherapist,
   deleteTherapist,
   getTherapistByUserId,
+  getTherapistCv,
+  getTherapistLicense,
 };

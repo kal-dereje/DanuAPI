@@ -31,18 +31,6 @@ const UserCreate = async (req, res) => {
       });
       user.save();
 
-      // const user = await User.SignUp(
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   password,
-      //   // phoneNumber,
-      //   // profilePic,
-      //   // gender,
-      //   // age,
-      //   role
-      // );
-
       res.status(201).json({ message: "Sucessfuly signed up!", user });
     }
   } catch (err) {

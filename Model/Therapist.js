@@ -6,6 +6,10 @@ const therapistSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    license: {
+      type: String,
+      required: true,
+    },
     speciality: [{ type: String }],
     availabeDays: [
       {

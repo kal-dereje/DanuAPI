@@ -23,6 +23,10 @@ const userSchema = mongoose.Schema(
     phoneNumber: {
       type: String,
     },
+    rating: {
+      type: Number,
+      default: 0,
+    },
     profilePic: {
       type: String,
     },

@@ -101,21 +101,30 @@ const verifyPayment = async (req, res) => {
         if (latestPayment) {
           console.log("Latest payment deleted successfully:", latestPayment);
         }
-        const schedule = await ClientModel.findOne({ user: clientId }).populate(
-          "schedule"
-        );
-        console.log(schedule);
 
-        const latestSchedule = await ScheduleModel.findOneAndDelete({
-          _id: schedule._id,
-        }).sort({
-          createdAt: -1,
+        const deletionResult = await ScheduleModel.findOneAndDelete({
+          client: clientId,
+          therapist: latestPayment?.receiver,
         });
 
-        const deletedSchedule = ClientModel.updateOne(
-          { user: clientId },
-          { $unset: { schedule: 1 } }
-        );
+        if (deletionResult) {
+          console.log("Schedule deleted successfully:", deletionResult);
+        }
+        // const schedule = await ClientModel.findOne({ user: clientId }).populate(
+        //   "schedule"
+        // );
+        // console.log(schedule);
+
+        // const latestSchedule = await ScheduleModel.findOneAndDelete({
+        //   _id: schedule._id,
+        // }).sort({
+        //   createdAt: -1,
+        // });
+
+        // const deletedSchedule = ClientModel.updateOne(
+        //   { user: clientId },
+        //   { $unset: { schedule: 1 } }
+        // );
         res
           .status(400)
           .json({ message: "failed chapa transsaction", error: error });
@@ -131,4 +140,21 @@ const verifyPayment = async (req, res) => {
   }
 };
 
-module.exports = { createPayment, verifyPayment };
+const getTransactionHistory = async (req, res) => {
+  console.log("kalab");
+  try {
+    const { userId } = req.params;
+
+    const transactionHistory = await PaymentModel.find({
+      $or: [{ sender: userId }, { receiver: userId }],
+    })
+      .populate("sender")
+      .populate("receiver");
+
+    res.status(200).json(transactionHistory);
+  } catch (error) {
+    res.status(404).json({ error: "Failed to get transaction history" });
+  }
+};
+
+module.exports = { createPayment, verifyPayment, getTransactionHistory };

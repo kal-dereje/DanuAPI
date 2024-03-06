@@ -25,6 +25,14 @@ const scheduleSchema = new Schema(
       type: String,
       required: true,
     },
+    client: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    therapist: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );

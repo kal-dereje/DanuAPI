@@ -19,22 +19,24 @@ const createSchedule = async (req, res) => {
       day,
       startTime,
       endTime,
+      client: clientUserId,
+      therapist: therapistUserId,
     });
 
     // Save the new schedule to the database
     const savedSchedule = await newSchedule.save();
 
-    const therapist = await TherapistModel.findOneAndUpdate(
-      { user: therapistUserId }, // Find the therapist by user ObjectId
-      { $push: { schedules: savedSchedule._id } }, // Add the schedule ObjectId to the schedules array
-      { new: true } // To return the updated document
-    );
+    // const therapist = await TherapistModel.findOneAndUpdate(
+    //   { user: therapistUserId }, // Find the therapist by user ObjectId
+    //   { $push: { schedules: savedSchedule._id } }, // Add the schedule ObjectId to the schedules array
+    //   { new: true } // To return the updated document
+    // );
 
-    const client = await ClientModel.findOneAndUpdate(
-      { user: clientUserId }, // Find the client by user ObjectId
-      { $set: { schedule: savedSchedule } }, // Set the schedule ObjectId
-      { new: true, upsert: true } // Return the updated document, create if it doesn't exist
-    );
+    // const client = await ClientModel.findOneAndUpdate(
+    //   { user: clientUserId }, // Find the client by user ObjectId
+    //   { $push: { schedules: savedSchedule._id } }, // Add the schedule ObjectId to the schedules array
+    //   { new: true } // To return the updated document
+    // );
 
     res.status(200).json({ message: "sucess", response: req.response });
   } catch (error) {
