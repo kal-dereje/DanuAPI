@@ -45,6 +45,20 @@ const therapistSchema = new mongoose.Schema(
         ref: "Schedule",
       },
     ],
+    notes: [
+      {
+        // String type field inside each `notes` object
+        content: {
+          type: String,
+          required: true,
+        },
+        // Reference to the user type inside each `notes` object
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
     // other therapist fields...
   },
   { timestamps: true }

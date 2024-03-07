@@ -1,5 +1,6 @@
 const {
   createSchedule,
+  getSchedules,
   // getReview,
   // getOneReview,
   // deleteReview,
@@ -12,7 +13,7 @@ const scheduleRouter = express.Router();
 
 // schedule.use(authentication);
 scheduleRouter.route("/createschedule").post(createSchedule);
-//   scheduleRouter.route("/getschedules").get(getschedule);
+scheduleRouter.route("/getSchedules/:userId").get(getSchedules);
 //   scheduleRouter.route("/getOneschedule/:id").get(getOneschedule);
 //   scheduleRouter.route("/updateschedule/:id").patch(updateschedule);
 //   scheduleRouter.route("/deleteschedule/:id").delete(deleteschedule);

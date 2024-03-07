@@ -4,6 +4,7 @@ const AproveRequestModel = require("../Model/AproveRequest");
 
 const path = require("path");
 const fs = require("fs");
+const { Console } = require("console");
 // CREATE NEW THERAPIST
 const createTherapist = async (req, res) => {
   try {
@@ -242,6 +243,7 @@ const getTherapistsBySpeciality = async (req, res) => {
 const getOneTherapist = async (req, res) => {
   try {
     const { therapistId } = req.params;
+    console.log(therapistId);
     const therapist = await TherapistModel.findById(therapistId).populate(
       "user"
     );
