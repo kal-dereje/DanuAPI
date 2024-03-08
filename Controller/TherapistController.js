@@ -68,6 +68,75 @@ const getTherapistByUserId = async (req, res) => {
   }
 };
 
+const updateNoteByUser = async (req, res) => {
+  try {
+    // Extract the content of the note from the request body
+    const { content, therapistId, userId } = req.body;
+
+    // Find the therapist by ID
+    const therapist = await TherapistModel.findById(therapistId);
+
+    if (!therapist) {
+      return res.status(404).json({ message: "Therapist not found" });
+    }
+
+    // Find the index of the note that matches the user ID
+    const noteIndex = therapist.notes.findIndex(
+      (note) => note.user.toString() === userId
+    );
+
+    if (noteIndex === -1) {
+      const newNote = {
+        content: content,
+        user: userId,
+      };
+
+      // Push the new note to the existing notes array
+      therapist.notes.push(newNote);
+
+      // Save the updated therapist object
+      await therapist.save();
+    } else {
+      therapist.notes[noteIndex].content =
+        therapist.notes[noteIndex].content + "\n\n" + content;
+
+      // Save the updated therapist object
+      await therapist.save();
+    }
+    return res.status(200).json({ message: "Note updated successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const getNotes = async (req, res) => {
+  try {
+    // Extract the content of the note from the request body
+    const { therapistId, userId } = req.body;
+
+    // Find the therapist by ID
+    const therapist = await TherapistModel.findById(therapistId);
+
+    if (!therapist) {
+      return res.status(404).json({ message: "Therapist not found" });
+    }
+
+    // Find the index of the note that matches the user ID
+    const noteIndex = therapist.notes.findIndex(
+      (note) => note.user.toString() === userId
+    );
+
+    if (noteIndex === -1) {
+      return res.status(200).json({ note: "You don't have any note yet" });
+    } else {
+      return res.status(200).json({ note: therapist.notes[noteIndex].content });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: "Internal server error" });
+  }
+};
 // Define the controller function
 const getUserProfilePicture = async (req, res) => {
   const { userId } = req.params; // Assuming you have a userId to identify the user
@@ -306,4 +375,6 @@ module.exports = {
   getTherapistByUserId,
   getTherapistCv,
   getTherapistLicense,
+  updateNoteByUser,
+  getNotes,
 };

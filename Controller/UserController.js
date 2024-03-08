@@ -86,7 +86,32 @@ const GetUser = async (req, res) => {
     res.status(401).json({ message: err.message });
   }
 };
+// Define your controller function
+const toggleUserActiveStatus = async (req, res) => {
+  try {
+    // Extract user ID from the request parameters
+    const { userId } = req.params;
 
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Toggle the isActive field
+    user.isActive = !user.isActive;
+
+    // Save the updated user object
+    await user.save();
+
+    return res
+      .status(200)
+      .json({ message: "User isActive status toggled successfully" });
+  } catch (error) {
+    return res.status(401).json({ message: "Internal server error" });
+  }
+};
 const addOrChangePicture = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -175,4 +200,5 @@ module.exports = {
   DeleteUser,
   LoginUser,
   addOrChangePicture,
+  toggleUserActiveStatus,
 };

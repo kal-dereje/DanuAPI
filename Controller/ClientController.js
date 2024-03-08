@@ -17,7 +17,7 @@ const createClient = async (req, res) => {
     if (user) {
       UserModel.findOneAndUpdate(
         { _id: userID }, // Your query to find the document
-        { $set: { attempt: true } }, // Use $set to specify the field and its new value
+        { $set: { attempt: true, isActive: true } }, // Use $set to specify the field and its new value
         { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
       )
         .then((updatedOrNewAttempt) => {

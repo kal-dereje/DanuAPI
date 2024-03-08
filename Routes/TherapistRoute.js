@@ -9,6 +9,8 @@ const {
   getTherapistByUserId,
   getTherapistCv,
   getTherapistLicense,
+  updateNoteByUser,
+  getNotes,
 } = require("../Controller/TherapistController");
 
 const authentication = require("../MiddleWare/Authentication");
@@ -19,6 +21,8 @@ const therapistRouter = express.Router();
 
 // clientRouter.use(authentication);
 therapistRouter.route("/createTherapist").post(uploader, createTherapist);
+therapistRouter.route("/updateNoteByUser").post(updateNoteByUser);
+therapistRouter.route("/getNotes").post(getNotes);
 therapistRouter.route("/getTherapists").get(getTherapist);
 therapistRouter
   .route("/getUserProfilePicture/:userId")

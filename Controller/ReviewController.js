@@ -58,6 +58,22 @@ const getReview = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+const getReviews = async (req, res) => {
+  console.log("ka");
+  try {
+    const reviews = await ReviewModel.find({})
+      .populate("client")
+      .populate("therapist");
+    if (reviews) {
+      res.status(200).json(reviews);
+    } else {
+      res.status(200).json("There is no Review");
+    }
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
 const getOneReview = async (req, res) => {};
 const updateReview = async (req, res) => {};
 const deleteReview = async (req, res) => {};
@@ -65,6 +81,7 @@ const deleteReview = async (req, res) => {};
 module.exports = {
   createReview,
   getReview,
+  getReviews,
   getOneReview,
   updateReview,
   deleteReview,
