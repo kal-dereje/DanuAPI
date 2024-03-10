@@ -37,7 +37,17 @@ const scheduleSchema = new Schema(
   { timestamps: true }
 );
 
-// Create the Testimony model
+// Define a virtual field for TTL indexing
+scheduleSchema.virtual("expireAt").get(function () {
+  const expirationDate = new Date(
+    `${this.year}-${this.month}-${this.day}T${this.endTime}`
+  );
+  return expirationDate;
+});
+
+// Create TTL index
+scheduleSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
+
 const Schedule = mongoose.model("Schedule", scheduleSchema);
 
 module.exports = Schedule;

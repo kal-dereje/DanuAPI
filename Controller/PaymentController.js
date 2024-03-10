@@ -45,7 +45,7 @@ const createPayment = async (req, res) => {
       });
       const addClient = await TherapistModel.updateOne(
         { user: therapistUserId },
-        { $push: { clients: clientUserId } }
+        { $addToSet: { clients: clientUserId } }
       );
 
       console.log(addClient);
@@ -57,7 +57,7 @@ const createPayment = async (req, res) => {
         { user: clientUserId },
         {
           $set: { therapist: therapistUserId },
-          $push: { therapistList: therapistUserId },
+          $addToSet: { therapistList: therapistUserId },
         }
       );
 

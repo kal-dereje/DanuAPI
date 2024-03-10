@@ -17,23 +17,42 @@ const createClient = async (req, res) => {
     if (user) {
       UserModel.findOneAndUpdate(
         { _id: userID }, // Your query to find the document
-        { $set: { attempt: true, isActive: true } }, // Use $set to specify the field and its new value
+        { $set: { attempt: true, isActive: true, gender: questionAnswer[0] } }, // Use $set to specify the field and its new value
         { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
       )
         .then((updatedOrNewAttempt) => {
-          console.log("attempt code updated or created:", updatedOrNewAttempt);
+          ClientModel.findOneAndUpdate(
+            { user: userID }, // Find the client by user ID
+            {
+              sessionType: sessionType[0],
+              questionnaire: questionAnswer,
+              user: userID,
+            }, // Update sessionType and questionnaire fields
+            { upsert: true, new: true, setDefaultsOnInsert: true }, // Options
+            (err, updatedClient) => {
+              if (err) {
+                return res
+                  .status(400)
+                  .json({ message: "error inserting client" });
+              }
+
+              return res
+                .status(201)
+                .json({ message: "Data created/updated successfully" });
+            }
+          );
         })
         .catch((error) => {
-          console.error("Error updating client attempt:", error);
+          return res.status(400).json({ message: "error inserting client" });
         });
 
-      const clientModel = new ClientModel({
-        sessionType: sessionType[0],
-        questionnaire: questionAnswer,
-        user: user,
-      });
-      clientModel.save();
-      res.status(201).json({ message: "Data created successfully" });
+      // const clientModel = new ClientModel({
+      //   sessionType: sessionType[0],
+      //   questionnaire: questionAnswer,
+      //   user: user,
+      // });
+      // clientModel.save();
+      // res.status(201).json({ message: "Data created successfully" });
     }
   } catch (error) {
     console.log(error);
