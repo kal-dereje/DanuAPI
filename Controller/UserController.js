@@ -1,5 +1,9 @@
 const User = require("../Model/User");
+const ClientModel = require("../Model/Client");
+const TherapistModel = require("../Model/Therapist");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 //Token Generator
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
@@ -7,48 +11,67 @@ const createToken = (_id) => {
 
 //Sign Up
 const UserCreate = async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    age,
-    role,
-  } = req.body;
-
+  const { firstName, lastName, email, password, role } = req.body;
   try {
-    const profilePic = req.file.filename;
-    console.log("file name: ", profilePic);
-    const user = await User.SignUp(
-      firstName,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-      profilePic,
-      gender,
-      age,
-      role
-    );
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    //const profilePic = req.file.filename;
+    const exists = await User.findOne({ email });
+    if (exists) {
+      res.status(409).json({ message: "Email already in use!" });
 
-    res.status(201).json({ message: "Sucessfuly signed up!", user });
+      // throw Error("Email already in use!");
+    } else {
+      const user = new User({
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        role,
+      });
+      user.save();
+
+      res.status(201).json({ message: "Sucessfuly signed up!", user });
+    }
   } catch (err) {
-    res.status(422).json({ message: err.message });
+    res.status(422).json({ message: err });
   }
 };
 
 //Login
 const LoginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(req.body);
   try {
     const users = await User.Login(email, password);
-
-    //token
+    const user = await User.findOne({ email });
     const token = createToken(users._id);
-    res.status(200).json({ message: "sucess!", token: token });
+    if (user.role == "client") {
+      const client = await ClientModel.findOne({ user: user._id }).populate(
+        "therapistList"
+      );
+      res
+        .status(200)
+        .json({ message: "sucess!", token: token, user: user, client: client });
+    } else if (user.role == "therapist") {
+      const therapist = await TherapistModel.findOne({
+        user: user._id,
+      })
+        .populate("user")
+        .populate("clients");
+      res.status(200).json({
+        message: "sucess!",
+        token: token,
+        user: user,
+        therapist: therapist,
+      });
+    } else {
+      res.status(200).json({
+        message: "sucess!",
+        token: token,
+        user: user,
+      });
+    }
   } catch (err) {
     res.status(401).json({ message: err.message });
   }
@@ -61,6 +84,58 @@ const GetUser = async (req, res) => {
     res.status(200).json(users);
   } catch (err) {
     res.status(401).json({ message: err.message });
+  }
+};
+// Define your controller function
+const toggleUserActiveStatus = async (req, res) => {
+  try {
+    // Extract user ID from the request parameters
+    const { userId } = req.params;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Toggle the isActive field
+    user.isActive = !user.isActive;
+
+    // Save the updated user object
+    await user.save();
+
+    return res
+      .status(200)
+      .json({ message: "User isActive status toggled successfully" });
+  } catch (error) {
+    return res.status(401).json({ message: "Internal server error" });
+  }
+};
+const addOrChangePicture = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const { profilePic } = req.files;
+
+    const user = await User.findById(userId);
+    console.log(profilePic);
+    if (user) {
+      const test = await User.findOneAndUpdate(
+        { _id: userId }, // Your query to find the document
+        {
+          $set: {
+            profilePic: profilePic[0]["filename"],
+          },
+        }, // Use $set to specify the field and its new value
+        { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
+      );
+
+      res
+        .status(201)
+        .json({ message: "Picture add or update scuessfully", test });
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 // Get one
@@ -84,7 +159,7 @@ const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const updatedData = req.body;
-
+    console.log(updatedData);
     const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {
       new: true,
     });
@@ -97,7 +172,6 @@ const UpdateUser = async (req, res) => {
   } catch (err) {
     res.status(422).json({ message: err.message });
   }
-  // res.status(200).json({ message: "this is update" });
 };
 
 //Delete one
@@ -125,4 +199,6 @@ module.exports = {
   UpdateUser,
   DeleteUser,
   LoginUser,
+  addOrChangePicture,
+  toggleUserActiveStatus,
 };

@@ -1,23 +1,58 @@
 const ClientModel = require("../Model/Client");
 const UserModel = require("../Model/User");
-
+const randomForest = require("../utils/randomForest");
 const createClient = async (req, res) => {
   try {
-    const { sessionType, therapyHistory, genderPreference, userId } = req.body;
-
-    const user = await UserModel.findById(userId);
-    console.log(user);
-    if (user) {
-      const clientModel = new ClientModel({
-        sessionType,
-        therapyHistory,
-        genderPreference,
-        user: user,
+    const { questionAnswer, userID } = req.body;
+    const user = await UserModel.findById(userID);
+    var sessionType;
+    await randomForest(questionAnswer)
+      .then((prediction) => {
+        sessionType = prediction;
+      })
+      .catch((error) => {
+        res.status(404).json({ message: error });
       });
-      clientModel.save();
-      res
-        .status(201)
-        .json({ message: "Data created successfully", clientModel });
+    console.log(sessionType[0]);
+    if (user) {
+      UserModel.findOneAndUpdate(
+        { _id: userID }, // Your query to find the document
+        { $set: { attempt: true, isActive: true, gender: questionAnswer[0] } }, // Use $set to specify the field and its new value
+        { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
+      )
+        .then((updatedOrNewAttempt) => {
+          console.log(updatedOrNewAttempt);
+        })
+        .catch((error) => {
+          return res.status(400).json({ message: "error inserting client" });
+        });
+
+      ClientModel.findOneAndUpdate(
+        { user: userID }, // Find the client by user ID
+        {
+          sessionType: sessionType[0],
+          questionnaire: questionAnswer,
+          user: userID,
+        }, // Update sessionType and questionnaire fields
+        { upsert: true, new: true, setDefaultsOnInsert: true } // Options
+      )
+        .then((updatedClient) => {
+          console.log(updatedClient);
+          return res
+            .status(200)
+            .json({ message: "client created or updated " });
+        })
+        .catch((error) => {
+          return res.status(400).json({ message: "error inserting client" });
+        });
+
+      // const clientModel = new ClientModel({
+      //   sessionType: sessionType[0],
+      //   questionnaire: questionAnswer,
+      //   user: user,
+      // });
+      // clientModel.save();
+      // res.status(201).json({ message: "Data created successfully" });
     }
   } catch (error) {
     console.log(error);
@@ -32,6 +67,20 @@ const getClients = async (req, res) => {
       res.status(200).json(client);
     } else {
       res.status(200).json({ message: "There is no client found" });
+    }
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
+const getOneClientUsingUserId = async (req, res) => {
+  try {
+    const { clientUserId } = req.params;
+    const client = await ClientModel.findOne({ user: clientUserId });
+    if (client) {
+      res.status(200).json(client);
+    } else {
+      res.status(200).json({ message: "Client or associated user not found" });
     }
   } catch (err) {
     res.status(404).json({ message: err.message });
@@ -98,4 +147,5 @@ module.exports = {
   getOneClient,
   updateClient,
   deleteClient,
+  getOneClientUsingUserId,
 };

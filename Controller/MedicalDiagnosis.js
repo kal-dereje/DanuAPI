@@ -59,6 +59,21 @@ const getOneDiagnosis = async (req, res) => {
   }
 };
 
+const getDiagnosisUsingClientAndTherapistId = async (req, res) => {
+  const { clientId, therapistId } = req.params;
+  try {
+    const diagnosis = await DiagnosisModel.find({
+      client: clientId,
+    })
+      .populate("client") // Populate the 'client' field to get client details
+      .populate("therapist");
+
+    res.status(200).json(diagnosis);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 const updateDiagnosis = async (req, res) => {
   try {
     const { diagnosisId } = req.params;
@@ -104,4 +119,5 @@ module.exports = {
   getOneDiagnosis,
   updateDiagnosis,
   deleteDiagnosis,
+  getDiagnosisUsingClientAndTherapistId,
 };

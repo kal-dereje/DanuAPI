@@ -9,11 +9,27 @@ const clientSchema = new mongoose.Schema(
     therapyHistory: {
       type: String,
     },
-    genderPreference: {
-      type: String,
-      requried: true,
+    therapistList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    questionnaire: [
+      {
+        type: String,
+      },
+    ],
+    therapist: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-
+    schedules: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Schedule",
+      },
+    ],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

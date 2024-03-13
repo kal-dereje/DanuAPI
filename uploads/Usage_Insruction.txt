@@ -1,0 +1,110 @@
+
+## CSV Data Analysis Tool
+
+The CSV Data Analysis Tool is a Bash script designed to assist users in analyzing and manipulating CSV (Comma-Separated Values) files. This versatile script offers various functionalities for data analysis, allowing users to gain insights from their data with ease.
+
+### Usage
+
+To utilize the CSV Data Analysis Tool, follow these steps:
+
+1. Open your terminal.
+
+2. Navigate to the directory where the `csv_data_analysis.sh` script is located.
+
+3. Run the script by entering the following command:
+
+   ```bash
+   ./csvAnalysisTool.sh
+   ```
+
+4. You will be prompted to provide the path to the CSV file you want to analyze. Enter the full path or relative path to the file and press Enter.
+
+   Note Ensure that you have the appropriate permissions to read and write to the specified CSV file.
+
+### Features and Options
+
+The CSV Data Analysis Tool offers the following features and options:
+
+#### 1. Display Rows and Columns
+
+- **Description:** This option provides information about the structure of the CSV file, displaying the number of rows and columns.
+
+#### 2. List Unique Values in a Column
+
+- **Description:** Use this option to explore unique values within a specific column of the CSV file.
+
+- **Usage:** Enter the name of the column you wish to investigate when prompted.
+
+#### 3. Display Column Names
+
+- **Description:** This option displays the header row of the CSV file, showing the names of all columns.
+
+#### 4. Min and Max Values for Numeric Columns
+
+- **Description:** Analyze numeric columns by calculating and displaying the minimum and maximum values.
+
+- **Usage:** Enter the name of the numeric column you want to analyze when prompted.
+
+#### 5. Most Frequent Value for Categorical Columns
+
+- **Description:** Find and display the most frequently occurring value in a categorical column, along with its occurrence count.
+
+- **Usage:** Enter the name of the categorical column you want to analyze when prompted.
+
+#### 6. Calculate Summary Statistics
+
+- **Description:** Calculate summary statistics (mean, variance, and standard deviation) for a numeric column.
+
+- **Usage:** Enter the name of the numeric column you want to analyze when prompted.
+
+#### 7. Filter and Extract Rows/Columns
+
+- **Description:** This option provides two sub-options:
+
+   - **1) Filter rows by condition:** Filter rows that match a specific condition within a column.
+
+- **Usage:** Depending on the sub-option, enter the column name and condition (for filtering) or specify columns to extract (not implemented).
+
+#### 8. Sort CSV by Column
+
+- **Description:** Sort the CSV file based on a selected column.
+
+- **Usage:** Enter the name of the column by which you want to sort the CSV file when prompted.
+
+#### 9. Exit
+
+- **Description:** Exit the CSV Data Analysis Tool.
+
+### Note
+
+- Ensure that you have Bash installed on your system to run this script.
+
+- Make sure to provide the correct path to the CSV file when prompted.
+
+- Depending on the operation you choose, the script may prompt you for additional input, such as column names or values.
+
+- Be cautious when applying filtering or sorting operations, as they may modify the original CSV file.
+
+### Examples
+
+Here are some examples of how to use the CSV Data Analysis Tool:
+
+1. **Display the number of rows and columns:**
+
+   - Choose option 1 and provide the path to your CSV file when prompted.
+
+2. **List unique values in a specific column:**
+
+   - Choose option 2 and enter the name of the column when prompted.
+
+3. **Calculate summary statistics for a numeric column:**
+
+   - Choose option 4 and enter the name of the numeric column when prompted.
+
+4. **Filter rows by a condition:**
+
+   - Choose option 7, then option 1, and enter the column name and condition to filter by when prompted.
+
+5. **Sort the CSV file by a specific column:**
+
+   - Choose option 8 and enter the name of the column by which you want to sort the CSV file when prompted.
