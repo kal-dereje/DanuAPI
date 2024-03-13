@@ -15,16 +15,32 @@ const createTherapist = async (req, res) => {
     const user = await UserModel.findById(userId);
     console.log(license);
     if (user) {
-      const therapistModel = new TherapistModel({
-        cv: cv[0]["filename"],
-        license: license[0]["filename"],
-        speciality,
-        description,
-        pricePerHour,
-        availabeDays: days,
-        user: user,
-      });
-      therapistModel.save();
+      // const therapistModel = new TherapistModel({
+      //   cv: cv[0]["filename"],
+      //   license: license[0]["filename"],
+      //   speciality,
+      //   description,
+      //   pricePerHour,
+      //   availabeDays: days,
+      //   user: user,
+      // });
+      // therapistModel.save();
+      const therapistModel = await TherapistModel.findOneAndUpdate(
+        { user: user }, // condition to find the document
+        {
+          // values to update or create
+          cv: cv[0]["filename"],
+          license: license[0]["filename"],
+          speciality,
+          description,
+          pricePerHour,
+          availabeDays: days,
+          user: user,
+        },
+        { upsert: true, new: true } // To return the updated document
+      );
+
+      console.log(therapistModel);
       const test = await UserModel.findOneAndUpdate(
         { _id: userId }, // Your query to find the document
         {
@@ -34,6 +50,7 @@ const createTherapist = async (req, res) => {
             profilePic: profilePic[0]["filename"],
             license: license[0]["filename"],
             attempt: true,
+            isActive: false,
           },
         }, // Use $set to specify the field and its new value
         { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document

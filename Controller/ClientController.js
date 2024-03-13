@@ -13,7 +13,7 @@ const createClient = async (req, res) => {
       .catch((error) => {
         res.status(404).json({ message: error });
       });
-
+    console.log(sessionType[0]);
     if (user) {
       UserModel.findOneAndUpdate(
         { _id: userID }, // Your query to find the document
@@ -21,26 +21,26 @@ const createClient = async (req, res) => {
         { upsert: true, new: true, setDefaultsOnInsert: true } // To return the updated document
       )
         .then((updatedOrNewAttempt) => {
-          ClientModel.findOneAndUpdate(
-            { user: userID }, // Find the client by user ID
-            {
-              sessionType: sessionType[0],
-              questionnaire: questionAnswer,
-              user: userID,
-            }, // Update sessionType and questionnaire fields
-            { upsert: true, new: true, setDefaultsOnInsert: true }, // Options
-            (err, updatedClient) => {
-              if (err) {
-                return res
-                  .status(400)
-                  .json({ message: "error inserting client" });
-              }
+          console.log(updatedOrNewAttempt);
+        })
+        .catch((error) => {
+          return res.status(400).json({ message: "error inserting client" });
+        });
 
-              return res
-                .status(201)
-                .json({ message: "Data created/updated successfully" });
-            }
-          );
+      ClientModel.findOneAndUpdate(
+        { user: userID }, // Find the client by user ID
+        {
+          sessionType: sessionType[0],
+          questionnaire: questionAnswer,
+          user: userID,
+        }, // Update sessionType and questionnaire fields
+        { upsert: true, new: true, setDefaultsOnInsert: true } // Options
+      )
+        .then((updatedClient) => {
+          console.log(updatedClient);
+          return res
+            .status(200)
+            .json({ message: "client created or updated " });
         })
         .catch((error) => {
           return res.status(400).json({ message: "error inserting client" });

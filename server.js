@@ -134,4 +134,24 @@ io.on("connection", (socket) => {
       senderName,
     });
   });
+
+  // Handle incoming call event
+  socket.on("call", (data) => {
+    const { userId, callData } = data;
+    console.log(`Incoming call for user ${userId}`);
+    io.to(userId).emit("incomingCall", callData);
+  });
+
+  // Handle answering the call event
+  socket.on("answerCall", (data) => {
+    const { userId, answerData } = data;
+    console.log(`Answering call for user ${userId}`);
+    io.to(userId).emit("callAnswered", answerData);
+  });
+
+  // Handle ending the call event
+  socket.on("endCall", (userId) => {
+    console.log(`Ending call for user ${userId}`);
+    io.to(userId).emit("callEnded");
+  });
 });
