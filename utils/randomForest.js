@@ -53,7 +53,8 @@ async function randomForestClassifer(userData) {
 
         // Make predictions on new data
         const prediction = rf.predict([userData]);
-
+        console.log("here we go");
+        console.log(prediction);
         // Resolve the promise with the prediction
         resolve(prediction);
       })
@@ -63,5 +64,24 @@ async function randomForestClassifer(userData) {
       });
   });
 }
+
+randomForestClassifer([
+  "Female",
+  "above 65",
+  "In relationship",
+  "Not at all",
+  "No",
+  "Good",
+  "No",
+  "Several Days",
+  "Several Days",
+  "Yes",
+  "Weekly",
+  "Over 2 weeks ago",
+  "No",
+  "Nearly everyday",
+  "No",
+  "Good",
+]);
 
 module.exports = randomForestClassifer;
