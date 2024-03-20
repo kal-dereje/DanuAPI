@@ -41,6 +41,7 @@ const SendEmailVerificationCodeController = async (req, res) => {
           console.error("Error updating or creating verification code:", error);
         });
     }
+
     // Send the email with the client's contact form data
     await sendEmail(subject, clientMessage, send_to, sent_from, reply_to);
 

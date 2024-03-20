@@ -8,7 +8,21 @@ const bcrypt = require("bcrypt");
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
+const CheckEmail = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const exists = await User.findOne({ email });
+    if (exists) {
+      res.status(409).json({ message: "Email already in use!" });
 
+      // throw Error("Email already in use!");
+    } else {
+      res.status(200).json({ message: "good to go" });
+    }
+  } catch (err) {
+    res.status(422).json({ message: err });
+  }
+};
 //Sign Up
 const UserCreate = async (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -201,4 +215,5 @@ module.exports = {
   LoginUser,
   addOrChangePicture,
   toggleUserActiveStatus,
+  CheckEmail,
 };

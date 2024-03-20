@@ -7,6 +7,7 @@ const {
   LoginUser,
   toggleUserActiveStatus,
   addOrChangePicture,
+  CheckEmail,
 } = require("../Controller/UserController");
 const express = require("express");
 const userRouter = express.Router();
@@ -18,6 +19,7 @@ userRouter.route("/createUser").post(uploader, UserCreate);
 userRouter.route("/toggleUserActiveStatus/:userId").put(toggleUserActiveStatus);
 userRouter.route("/addOrChangePicture").post(uploader, addOrChangePicture);
 userRouter.route("/loginUser").post(LoginUser);
+userRouter.route("/CheckEmail").post(CheckEmail);
 userRouter.route("/updateUser/:userId").put(UpdateUser);
 userRouter.route("/delete/:userId").get(GetOneUser).delete(DeleteUser);
 // .patch(UpdateUser);

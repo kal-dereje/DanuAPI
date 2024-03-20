@@ -17,8 +17,8 @@ const sendEmail = async (subject, message, send_to, sent_from, reply_to) => {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST, // SMTP server host
     port: process.env.PORT_NUMBER, // Port number for the SMTP server
-    secure: false, // Set to true for TLS, false for other ports
-    requireTLS: process.env.TLS, // Whether TLS is required
+    secure: true, // Set to true for TLS, false for other ports
+    requireTLS: true, // Whether TLS is required
     auth: {
       user: process.env.USER, // SMTP server username
       pass: process.env.PASS, // SMTP server password
