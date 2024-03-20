@@ -330,9 +330,9 @@ const getOneTherapist = async (req, res) => {
   try {
     const { therapistId } = req.params;
     console.log(therapistId);
-    const therapist = await TherapistModel.findById(therapistId).populate(
-      "user"
-    );
+    const therapist = await TherapistModel.findById(therapistId)
+      .populate("user")
+      .populate("schedules");
     if (therapist) {
       res.status(200).json({ therapist });
     } else {

@@ -53,7 +53,7 @@ const SendEmailVerificationCodeController = async (req, res) => {
       }
 
       // Send the email with the client's contact form data
-      await sendEmail(subject, clientMessage, send_to, sent_from, reply_to);
+      //await sendEmail(subject, clientMessage, send_to, sent_from, reply_to);
 
       // Respond with a success message
       res.status(200).json({

@@ -61,9 +61,9 @@ const LoginUser = async (req, res) => {
     const user = await User.findOne({ email });
     const token = createToken(users._id);
     if (user.role == "client") {
-      const client = await ClientModel.findOne({ user: user._id }).populate(
-        "therapistList"
-      );
+      const client = await ClientModel.findOne({ user: user._id })
+        .populate("therapistList")
+        .populate("schedules");
       res
         .status(200)
         .json({ message: "sucess!", token: token, user: user, client: client });
