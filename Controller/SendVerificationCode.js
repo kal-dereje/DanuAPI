@@ -1,5 +1,6 @@
 // Import the necessary module for sending emails
 const sendEmail = require("../utils/sendEmail");
+const User = require("../Model/User");
 const VerififcationCodeModel = require("../Model/VerificationCode");
 // Controller function for handling contact form submissions
 const SendEmailVerificationCodeController = async (req, res) => {
@@ -7,6 +8,7 @@ const SendEmailVerificationCodeController = async (req, res) => {
     // Extract relevant data from the request body
     const { email } = req.body;
     const exists = await User.findOne({ email });
+
     if (exists) {
       res.status(409).json({ message: "Email already in use!" });
 
@@ -54,12 +56,10 @@ const SendEmailVerificationCodeController = async (req, res) => {
       await sendEmail(subject, clientMessage, send_to, sent_from, reply_to);
 
       // Respond with a success message
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Verfication code sent to your email",
-        });
+      res.status(200).json({
+        success: true,
+        message: "Verfication code sent to your email",
+      });
     }
   } catch (error) {
     // Handle errors and respond with an error message
